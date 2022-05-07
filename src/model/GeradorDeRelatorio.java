@@ -1,0 +1,41 @@
+package model;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import entity.ProgramaDeTV;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+
+public class GeradorDeRelatorio {
+	
+	
+	public static void obterProgramacaoDeUmCana(ArrayList<ProgramaDeTV> array) {
+
+        Document document = new Document(PageSize.A4);
+
+        try {
+            OutputStream outputStream = new FileOutputStream("Programação.pdf"); // no do arquivo.
+            PdfWriter.getInstance(document, outputStream);
+
+            document.open();
+            Paragraph paragraph = new Paragraph("---Programas disponiveis---"); // nome que vai aparecer no PDF.
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            for (int i = 0; i < array.size(); i++) {
+                Paragraph pg2 = new Paragraph("\n" + array.get(i).toString()); // inserindo os dados no PDF
+                document.add(pg2);
+            }
+            document.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+}
