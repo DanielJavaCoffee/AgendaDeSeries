@@ -1,4 +1,4 @@
-package Enuns;
+package enuns;
 
 public enum diasDaSemanas {
 

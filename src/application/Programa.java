@@ -1,11 +1,12 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import Enuns.diasDaSemanas;
-import Enuns.tipoDePrograma;
 import entity.Canal;
 import entity.ProgramaDeTV;
+import enuns.diasDaSemanas;
+import enuns.tipoDePrograma;
 import model.CentralDeInformacoes;
 import model.GeradorDeRelatorio;
 import model.Mensageiro;
@@ -16,13 +17,15 @@ public class Programa {
 	public static void main(String[] args) {
 
 		Persistencia persistencia = new Persistencia();
-	    CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	    
+		CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
+
 		Scanner leitor = new Scanner(System.in);
 		boolean sair = false;
+		boolean maisAlgumDia = false;
+		ArrayList<diasDaSemanas> diasDaSemana = new ArrayList<diasDaSemanas>();
 
 		while (sair == false) {
-			
+
 			System.out.println("1 - Novo Programa");
 			System.out.println("2 - Listar Todos Os Programas");
 			System.out.println("3 - Listar Todos Os Programas Do Mesmo Tipo");
@@ -51,34 +54,48 @@ public class Programa {
 					programa = tipoDePrograma.PROGRAMAS_CONTINUOS;
 				}
 
-				System.out.println("Dia Da Semana: ");
-				String dias = leitor.nextLine();
 				diasDaSemanas dia = null;
+				while (maisAlgumDia == false) {
 
-				switch (dias) {
-				case "1":
-					dia = diasDaSemanas.SEGUNDA;
-					break;
-				case "2":
-					dia = diasDaSemanas.TERÇA;
-					break;
-				case "3":
-					dia = diasDaSemanas.QUARTA;
-					break;
-				case "4":
-					dia = diasDaSemanas.QUINTA;
-					break;
-				case "5":
-					dia = diasDaSemanas.SEXTA;
-					break;
-				case "6":
-					dia = diasDaSemanas.SABADO;
-					break;
-				case "7":
-					dia = diasDaSemanas.DOMINGO;
-					break;
+					System.out.println("Dia Da Semana: S para não perguntar mais");
+					String dias = leitor.nextLine();
+					dias.toLowerCase();
+
+					switch (dias) {
+					case "segunda":
+						dia = diasDaSemanas.SEGUNDA;
+						diasDaSemana.add(dia);
+						break;
+					case "terça":
+						dia = diasDaSemanas.TERÇA;
+						diasDaSemana.add(dia);
+						break;
+					case "quarta":
+						dia = diasDaSemanas.QUARTA;
+						diasDaSemana.add(dia);
+						break;
+					case "quinta":
+						dia = diasDaSemanas.QUINTA;
+						diasDaSemana.add(dia);
+						break;
+					case "sexta":
+						dia = diasDaSemanas.SEXTA;
+						diasDaSemana.add(dia);
+						break;
+					case "sabado":
+						dia = diasDaSemanas.SABADO;
+						diasDaSemana.add(dia);
+						break;
+					case "domingo":
+						dia = diasDaSemanas.DOMINGO;
+						diasDaSemana.add(dia);
+						break;
+					case "S":
+						maisAlgumDia = true;
+					}
+					
 				}
-
+				
 				for (Canal c : centralDeInformacoes.getTodosOsCanais()) {
 					System.out.println(c);
 				}
@@ -87,8 +104,8 @@ public class Programa {
 				String nomeDoCanal = leitor.nextLine();
 
 				if (centralDeInformacoes.recuperarCanal(nomeDoCanal) != null) {
-					ProgramaDeTV programaDeTV = new ProgramaDeTV(nome, programa, dia,
-							centralDeInformacoes.recuperarCanal(nomeDoCanal));
+					ProgramaDeTV programaDeTV = new ProgramaDeTV(nome, programa,
+							centralDeInformacoes.recuperarCanal(nomeDoCanal), diasDaSemana);
 
 					if (centralDeInformacoes.adicionarProgramaDeTV(programaDeTV)) {
 						System.out.println("Programa Salvo Com Sucesso!");
@@ -99,19 +116,18 @@ public class Programa {
 				} else {
 					System.out.println("Canal não encontrado");
 				}
-
 				break;
 			case "2":
-				
-				for(ProgramaDeTV tv : centralDeInformacoes.getTodosOsProgramas()) {
+
+				for (ProgramaDeTV tv : centralDeInformacoes.getTodosOsProgramas()) {
 					System.out.println(tv.toString());
 				}
 				break;
 
 			case "3":
 
-				persistencia.recuperarCentral();
-				System.out.println("informe o tipo do Programa: 1 Séries regulares. 2 Reality Shows. 3 Progra,a contínuos");
+				System.out.println(
+						"informe o tipo do Programa: 1 Séries regulares. 2 Reality Shows. 3 Progra,a contínuos");
 				String tipo = leitor.nextLine();
 
 				if (tipo.equals("1")) {
@@ -129,8 +145,8 @@ public class Programa {
 					}
 					continue;
 				}
-
 				break;
+
 			case "4":
 
 				System.out.println("Nome Do Canal: ");
@@ -138,8 +154,8 @@ public class Programa {
 				System.out.println("Tipo Do Canal: ");
 				String tipoCanal = leitor.nextLine();
 				Canal canalDeTV = new Canal(nomeCanal, tipoCanal);
+
 				if (centralDeInformacoes.salvarCanal(canalDeTV)) {
-					centralDeInformacoes.salvarCanal(canalDeTV);
 					persistencia.salvarCentral(centralDeInformacoes);
 					System.out.println("Canal Salvo");
 				} else {
@@ -148,18 +164,18 @@ public class Programa {
 
 				break;
 			case "5":
-				
-				for(Canal c : centralDeInformacoes.getTodosOsCanais()) {
+
+				for (Canal c : centralDeInformacoes.getTodosOsCanais()) {
 					System.out.println(c.toString());
 				}
-				
+
 				break;
 			case "6":
-				
+
 				GeradorDeRelatorio.obterProgramacaoDeUmCana(centralDeInformacoes.getTodosOsProgramas());
 				System.out.println("PDF criado");
 				break;
-				
+
 			case "7":
 
 				System.out.println("Assunto: ");

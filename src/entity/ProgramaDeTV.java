@@ -1,31 +1,34 @@
 package entity;
 
-import Enuns.diasDaSemanas;
-import Enuns.tipoDePrograma;
+import java.util.ArrayList;
+
+import enuns.diasDaSemanas;
+import enuns.tipoDePrograma;
 
 public class ProgramaDeTV {
-	
+
 	private String nome;
 	private long id;
 	private tipoDePrograma tipoDePrograma;
 	private diasDaSemanas diasDaSemanas;
 	private Canal canal;
-	
+	private ArrayList<diasDaSemanas> dias = new ArrayList<diasDaSemanas>();
+
 	public ProgramaDeTV() {
 		this.id = System.currentTimeMillis();
 	}
 
-	public ProgramaDeTV(String nome, tipoDePrograma tipo, diasDaSemanas dia, Canal canal) {
+	public ProgramaDeTV(String nome, tipoDePrograma tipo, Canal canal, ArrayList<diasDaSemanas> dias) {
 		this.nome = nome;
 		this.tipoDePrograma = tipo;
-		this.diasDaSemanas = dia;
 		this.canal = canal;
+		this.dias = dias;
 		this.id = System.currentTimeMillis();
 	}
-	
+
 	public String toString() {
-		return "Nome: " + this.nome + " Tipo De Programa: " + this.tipoDePrograma + " Dias Da Semana: " + this.diasDaSemanas +
-				" ID: " + this.id + " " + this.canal;
+		return "Nome: " + this.nome + " Tipo De Programa: " + this.tipoDePrograma + " ID: " + this.id
+				+ "Dias Da Semana: " + this.dias + this.canal;
 	}
 
 	public String getNome() {
@@ -59,8 +62,16 @@ public class ProgramaDeTV {
 	public void setCanal(Canal canal) {
 		this.canal = canal;
 	}
-	
+
 	public long getId() {
 		return id;
+	}
+
+	public ArrayList<diasDaSemanas> getDias() {
+		return dias;
+	}
+
+	public void setDias(ArrayList<diasDaSemanas> dias) {
+		this.dias = dias;
 	}
 }

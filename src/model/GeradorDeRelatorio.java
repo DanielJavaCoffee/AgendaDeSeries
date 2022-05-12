@@ -37,5 +37,4 @@ public class GeradorDeRelatorio {
             e.printStackTrace();
         }
     }
-
 }
