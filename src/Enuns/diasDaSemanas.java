@@ -1,6 +1,6 @@
 package enuns;
 
-public enum diasDaSemanas {
+public enum DiasDaSemanas {
 
 	SEGUNDA, 
 	TERÇA,

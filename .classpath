@@ -23,5 +23,7 @@
 	<classpathentry kind="lib" path="pop3.jar"/>
 	<classpathentry kind="lib" path="smtp.jar"/>
 	<classpathentry kind="lib" path="xstream-1.4.18.jar"/>
+	<classpathentry kind="lib" path="activation-1.1.jar"/>
+	<classpathentry kind="lib" path="javax.mail-1.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

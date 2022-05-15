@@ -1,6 +1,6 @@
 package enuns;
 
-public enum tipoDePrograma {
+public enum TipoDePrograma {
 	 
 	 SERIES_REGULARES, 
 	 REALITY_SHOWS, 

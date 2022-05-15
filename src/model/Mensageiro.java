@@ -53,9 +53,7 @@ public class Mensageiro {
             Transport.send(message);
 
         } catch (MessagingException e) {
-
             System.out.print("Ocorreu um erro, tente novamente!");
-
         }
     }
 }

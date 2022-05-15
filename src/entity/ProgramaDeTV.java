@@ -2,57 +2,26 @@ package entity;
 
 import java.util.ArrayList;
 
-import enuns.diasDaSemanas;
-import enuns.tipoDePrograma;
+import enuns.DiasDaSemanas;
 
-public class ProgramaDeTV {
+
+
+public abstract class ProgramaDeTV {
 
 	private String nome;
 	private long id;
-	private tipoDePrograma tipoDePrograma;
-	private diasDaSemanas diasDaSemanas;
 	private Canal canal;
-	private ArrayList<diasDaSemanas> dias = new ArrayList<diasDaSemanas>();
+	private ArrayList<DiasDaSemanas> dias = new ArrayList<DiasDaSemanas>();
+	private String horario;
 
-	public ProgramaDeTV() {
-		this.id = System.currentTimeMillis();
-	}
-
-	public ProgramaDeTV(String nome, tipoDePrograma tipo, Canal canal, ArrayList<diasDaSemanas> dias) {
-		this.nome = nome;
-		this.tipoDePrograma = tipo;
-		this.canal = canal;
-		this.dias = dias;
-		this.id = System.currentTimeMillis();
-	}
-
-	public String toString() {
-		return "Nome: " + this.nome + " Tipo De Programa: " + this.tipoDePrograma + " ID: " + this.id
-				+ "Dias Da Semana: " + this.dias + this.canal;
-	}
-
+	public abstract String toString();
+	
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public tipoDePrograma getTipoDePrograma() {
-		return tipoDePrograma;
-	}
-
-	public void setTipoDePrograma(tipoDePrograma tipoDePrograma) {
-		this.tipoDePrograma = tipoDePrograma;
-	}
-
-	public diasDaSemanas getDiasDaSemanas() {
-		return diasDaSemanas;
-	}
-
-	public void setDiasDaSemanas(diasDaSemanas diasDaSemanas) {
-		this.diasDaSemanas = diasDaSemanas;
 	}
 
 	public Canal getCanal() {
@@ -67,11 +36,23 @@ public class ProgramaDeTV {
 		return id;
 	}
 
-	public ArrayList<diasDaSemanas> getDias() {
+	public ArrayList<DiasDaSemanas> getDias() {
 		return dias;
 	}
 
-	public void setDias(ArrayList<diasDaSemanas> dias) {
+	public void setDias(ArrayList<DiasDaSemanas> dias) {
 		this.dias = dias;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }
