@@ -1,31 +1,46 @@
 package entity;
 
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import enuns.EstiloSeriesRegulares;
 import enuns.DiasDaSemanas;
+import enuns.EstiloSeriesRegulares;
+import enuns.StatusDeExebicao;
+import enuns.TipoDePrograma;
 
-public class ProgramaSeriesRegulares extends ProgramaDeTV implements Comparable<ProgramaSeriesRegulares> {
+public class ProgramaSeriesRegulares extends ProgramaDeTV {
 
 	private String genero;
 	private EstiloSeriesRegulares estilo;
 	private String temparada;
 
-	public ProgramaSeriesRegulares(String genero, EstiloSeriesRegulares estilo, String temporada, String nome,
-			Canal canal, String horario, ArrayList<DiasDaSemanas> dia) {
+	public ProgramaSeriesRegulares() {
+
+	}
+
+	public ProgramaSeriesRegulares(String nome, StatusDeExebicao exebicao, Canal canal, List<DiasDaSemanas> dias,
+			String horario, Date data, String temporada, String genero, EstiloSeriesRegulares estilo) {
+
+		this.setTipoDePrograma(TipoDePrograma.SERIES_REGULARES);
+		this.setNome(nome);
+		this.setStatusDeExebicao(exebicao);
+		this.setCanal(canal);
+		this.setDias(dias);
+		this.setHorario(horario);
+		this.setDataHiato(data);
+		this.temparada = temporada;
 		this.genero = genero;
 		this.estilo = estilo;
-		this.temparada = temporada;
-		setNome(nome);
-		setCanal(canal);
-		setHorario(horario);
-		setDias(dia);
-		setId(System.currentTimeMillis());
+		this.setId(System.currentTimeMillis());
 	}
 
 	@Override
 	public String toString() {
-		return null;
+		return "Tipo De Programa: " + this.getTipoDePrograma() + "\n" + "Nome Do Programa: " + this.getNome() + "\n"
+				+ "Status De Exebição: " + this.getStatusDeExebicao() + "\n" + "Canal: " + this.getCanal() + "\n"
+				+ "Dias Da Semana: " + this.getDias() + "\n" + "Horario: " + this.getHorario() + "\n" + "Data: "
+				+ this.getDataHiato() + "\n" + "Temporada: " + this.getTemparada() + "\n" + "Genero: "
+				+ this.getGenero() + "\n" + "Estilo: " + this.getEstilo() + "\n" + "ID: " + this.getId();
 	}
 
 	public String getGenero() {
@@ -53,7 +68,7 @@ public class ProgramaSeriesRegulares extends ProgramaDeTV implements Comparable<
 	}
 
 	@Override
-	public int compareTo(ProgramaSeriesRegulares o) {
+	public int compareTo(ProgramaDeTV o) {
 		return 0;
 	}
 }

@@ -9,20 +9,20 @@ import entity.Canal;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.Mensagem;
-import tela.TelaDeListarCanal;
+import tela.TelaListarTodosOsCanal;
 import tela.TelaDeMenu;
 
 public class OuvinteTelaDeListarCanal implements ActionListener {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	private TelaDeListarCanal telaDeListarCanal;
+	private TelaListarTodosOsCanal telaDeListarCanal;
 
-	public TelaDeListarCanal getTelaDeListarCanal() {
+	public TelaListarTodosOsCanal getTelaDeListarCanal() {
 		return telaDeListarCanal;
 	}
 
-	public OuvinteTelaDeListarCanal(TelaDeListarCanal tela) {
+	public OuvinteTelaDeListarCanal(TelaListarTodosOsCanal tela) {
 		this.telaDeListarCanal = tela;
 	}
 
@@ -40,7 +40,7 @@ public class OuvinteTelaDeListarCanal implements ActionListener {
 				Mensagem.canalExcluido();
 				persistencia.salvarCentral(centralDeInformacoes);
 				telaDeListarCanal.setVisible(false);
-				new TelaDeListarCanal(null);
+				new TelaListarTodosOsCanal(null);
 			} else {
 				Mensagem.canalNaoEncontardo();
 			}

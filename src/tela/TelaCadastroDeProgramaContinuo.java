@@ -3,7 +3,6 @@ package tela;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,24 +19,23 @@ import entity.Canal;
 import janelas.JanelaTelaCadastroDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import ouvinte.OuvinteTelaDeCadastroDeProgramaSeriesRegulares;
+import ouvinte.OuvinteTelaDeCadastroDeProgramaContinuo;
 
-public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDePrograma {
+public class TelaCadastroDeProgramaContinuo extends JanelaTelaCadastroDePrograma {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	OuvinteTelaDeCadastroDeProgramaSeriesRegulares ouvinte = new OuvinteTelaDeCadastroDeProgramaSeriesRegulares(this);
+	OuvinteTelaDeCadastroDeProgramaContinuo ouvinte = new OuvinteTelaDeCadastroDeProgramaContinuo(this);
 
 	private JTextField campoNomeDoPrograma;
 	private JTextField campoIDCanal;
 	private JTextField campoDiasDaSemana;
-	private JTextField campoGenero;
-	private JTextField campoTemporada;
+	private JTextField campoApresentador;
 	private JFormattedTextField campoHorario;
 	private JButton buttonVoltar;
 	private JButton buttonSalvar;
 
-	public TelaCadastroDeProgramaSeriesRegulares(String titulo) {
+	public TelaCadastroDeProgramaContinuo(String titulo) {
 		super(titulo);
 		adicionarTitulo();
 		listarPrograma();
@@ -104,13 +102,9 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		horario.setBounds(40, 450, 130, 30);
 		add(horario);
 		
-		JLabel genero = new JLabel("Genero Do Programa: ");
-		genero.setBounds(40, 500, 130, 30);
-		add(genero);
-		
-		JLabel temporada = new JLabel("Temporada: ");
-		temporada.setBounds(40, 550, 130, 30);
-		add(temporada);
+		JLabel apresentador = new JLabel("Nome Do/s Apresentado/res: ");
+		apresentador.setBounds(40, 500, 130, 30);
+		add(apresentador);
 		
 	}
 
@@ -137,13 +131,9 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		campoHorario.setBounds(200, 450, 70, 30);
 		add(campoHorario);
 		
-		campoGenero = new JTextField();
-		campoGenero.setBounds(200, 500, 200, 30);
-		add(campoGenero);
-		
-		campoTemporada = new JTextField();
-		campoTemporada.setBounds(200, 550, 200, 30);
-		add(campoTemporada);
+		campoApresentador = new JTextField();
+		campoApresentador.setBounds(200, 500, 200, 30);
+		add(campoApresentador);
 		
 	}
 
@@ -206,13 +196,7 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		return buttonSalvar;
 	}
 
-	public JTextField getCampoGenero() {
-		return campoGenero;
+	public JTextField getCampoApresentador() {
+		return campoApresentador;
 	}
-
-	public JTextField getCampoTemporada() {
-		return campoTemporada;
-	}
-	
-	
 }

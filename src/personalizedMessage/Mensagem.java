@@ -61,9 +61,11 @@ public class Mensagem {
 	}
 	
 	//program
-	
 	public static void programaSalvo() {
 		JOptionPane.showMessageDialog(null, "Programa Salvo Com Sucesso!");
+	}
+	public static void programaNaoEncontradoComEsteID() {
+		JOptionPane.showMessageDialog(null, "Programa não encontrado com este ID!");
 	}
 	
 	// NumberFormatException
@@ -73,5 +75,10 @@ public class Mensagem {
 	// NullPointerException
 	public static void nullPointerException(NullPointerException e) {
 		JOptionPane.showMessageDialog(null, "Erro." + e.getMessage());
+	}
+	
+	//PDF
+	public static void PDFCriado() {
+		JOptionPane.showMessageDialog(null, "PDF Criado");
 	}
 }

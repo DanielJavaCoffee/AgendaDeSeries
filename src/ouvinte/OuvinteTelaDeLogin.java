@@ -30,7 +30,7 @@ public class OuvinteTelaDeLogin implements ActionListener {
 	public void actionPerformed(ActionEvent proseguir) {
 
 		String email = telaDeLogin.getCampoEmail().getText();
-		String senha = telaDeLogin.getCampoEmail().getText();
+		String senha = telaDeLogin.getCampoSenha().getText();
 
 		try {
 

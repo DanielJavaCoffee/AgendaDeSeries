@@ -70,13 +70,21 @@ public class TelaDeMenu extends JanelaPadrao {
 		menuOp.add(listarCanal);
 		listarCanal.addActionListener(ouvinte);	
 		
-		JMenuItem cadastrarPrograma = new JMenuItem("Cadastrar Programa");
+		JMenuItem cadastrarPrograma = new JMenuItem("Cadastrar Programas");
 		menuOp.add(cadastrarPrograma);
 		cadastrarPrograma.addActionListener(ouvinte);
 		
 		JMenuItem listarPrograma = new JMenuItem("Listar Programas");
 		menuOp.add(listarPrograma);
 		listarPrograma.addActionListener(ouvinte);
+		
+		JMenuItem gerarPDF = new JMenuItem("Gerar PDF");
+		menuOp.add(gerarPDF);
+		gerarPDF.addActionListener(ouvinte);
+		
+		JMenuItem foto = new JMenuItem("Foto");
+		menuOp.add(foto);
+		foto.addActionListener(ouvinte);
 	}
 
 	public JButton getButtonExcluir() {

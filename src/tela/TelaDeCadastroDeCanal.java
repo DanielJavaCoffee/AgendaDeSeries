@@ -17,9 +17,9 @@ import ouvinte.OuvinteTelaDeCadastroDeCanal;
 public class TelaDeCadastroDeCanal extends JanelaPadrao {
 
 	OuvinteTelaDeCadastroDeCanal ouvinte = new OuvinteTelaDeCadastroDeCanal(this);
-	
+
 	private JTextField campoNome;
-	private JFormattedTextField campoForma;
+//	private JFormattedTextField campoForma;
 	private JTextField campoLinkNumero;
 	private JButton buttonVoltar;
 	private JButton buttonSalvar;
@@ -32,9 +32,9 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 		adicionarJButtonVoltar();
 		adicionarJButtonSalvar();
 		setVisible(true);
-		
+
 	}
-	
+
 	private void titulo() {
 		JLabel jLabel = new JLabel("TELA DE CADASTRO DE CANAL", JLabel.CENTER);
 		jLabel.setOpaque(true);
@@ -42,51 +42,50 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 		jLabel.setBounds(0, 0, 700, 50);
 		add(jLabel);
 	}
-	
+
 	private void adicionarJLabel() {
-		
+
 		JLabel nomeDoCanal = new JLabel("Nome Do Canal: ");
 		nomeDoCanal.setBounds(30, 100, 120, 30);
 		add(nomeDoCanal);
-		
-		JLabel tipoDoCanal = new JLabel("Tipo Do Canal: ");
+
+	/*	JLabel tipoDoCanal = new JLabel("Tipo Do Canal: ");
 		tipoDoCanal.setBounds(30, 140, 120, 30);
 		add(tipoDoCanal);
-		
+    */
 		JLabel formarDeAssistir = new JLabel("Link Ou Número Do Canal: ");
 		formarDeAssistir.setBounds(30, 180, 150, 30);
 		add(formarDeAssistir);
-	
+
 	}
-	
+
 	private void adicionarJTextField() {
-		
+
 		campoNome = new JTextField();
 		campoNome.setBounds(200, 100, 200, 30);
 		add(campoNome);
-		
-		try {
-			campoForma = new JFormattedTextField(new MaskFormatter(" (1) canal aberto de televisão, (2) broadcasting aberto na interne,"
-					+ " (3) pacote de assinatura, (4) assinatura individual de televisão, (5) assinatura individual de broadcasting"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		campoForma.setBounds(200, 140, 200, 30);
-		add(campoForma);
-		
+
+		/*
+		 * try { campoForma = new JFormattedTextField(new
+		 * MaskFormatter(" (1) canal aberto de televisão, (2) broadcasting aberto na interne,"
+		 * +
+		 * " (3) pacote de assinatura, (4) assinatura individual de televisão, (5) assinatura individual de broadcasting"
+		 * )); } catch (ParseException e) { e.printStackTrace(); }
+		 * campoForma.setBounds(200, 140, 200, 30); add(campoForma);
+		 */
 		campoLinkNumero = new JFormattedTextField();
 		campoLinkNumero.setBounds(200, 180, 200, 30);
 		add(campoLinkNumero);
 	}
-	
+
 	private void adicionarJButtonVoltar() {
-		
+
 		buttonVoltar = new JButton("Voltar");
 		buttonVoltar.setBounds(30, 400, 100, 30);
 		buttonVoltar.addActionListener(voltar());
 		add(buttonVoltar);
 	}
-	
+
 	public ActionListener voltar() {
 		return new ActionListener() {
 			@Override
@@ -95,18 +94,18 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 			}
 		};
 	}
-	
+
 	private void adicionarJButtonSalvar() {
-		
+
 		buttonSalvar = new JButton("Salvar");
 		buttonSalvar.setBounds(550, 400, 100, 30);
 		buttonSalvar.addActionListener(salvar());
 		add(buttonSalvar);
 	}
-	
+
 	public ActionListener salvar() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ouvinte.actionPerformedsalvar(e);
@@ -114,14 +113,14 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 		};
 	}
 
-
 	public JTextField getCampoNome() {
 		return campoNome;
 	}
 
-	public JFormattedTextField getCampoForma() {
+	/*public JFormattedTextField getCampoForma() {
 		return campoForma;
 	}
+	*/
 
 	public JTextField getCampoLinkNumero() {
 		return campoLinkNumero;

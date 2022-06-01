@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ import model.CentralDeInformacoes;
 import model.Persistencia;
 import ouvinte.OuvinteTelaDeListarCanal;
 
-public class TelaDeListarCanal extends JanelaPadrao {
+public class TelaListarTodosOsCanal extends JanelaPadrao {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
@@ -31,7 +32,7 @@ public class TelaDeListarCanal extends JanelaPadrao {
 	private JButton buttonDetalhar;
 	private JTextField campoBusca;
 
-	public TelaDeListarCanal(String titulo) {
+	public TelaListarTodosOsCanal(String titulo) {
 		super(titulo);
 		adicionarJLabel();
 		adicionarJButtonVoltar();
@@ -124,7 +125,7 @@ public class TelaDeListarCanal extends JanelaPadrao {
 		modelo.addColumn("Forma De Assistir");
 		modelo.addColumn("Link Do Canal Ou Número");
 
-		ArrayList<Canal> canais = centralDeInformacoes.getTodosOsCanais();
+		List<Canal> canais = centralDeInformacoes.getTodosOsCanais();
 
 		Collections.sort(canais);
 

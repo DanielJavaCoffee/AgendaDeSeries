@@ -11,13 +11,12 @@ public class Usuario {
 	private ArrayList<Agenda> minhaAgenda = new ArrayList<Agenda>();
 
 	public Usuario() {
-
 	}
 
-	public Usuario(String nome, String email, String senha01, ArrayList<Agenda> agenda) {
+	public Usuario(String nome, String email, String senha, ArrayList<Agenda> agenda) {
 		this.nome = nome;
 		this.email = email;
-		this.senha = senha01;
+		this.senha = senha;
 		this.id = System.currentTimeMillis();
 		this.minhaAgenda = agenda;
 	}

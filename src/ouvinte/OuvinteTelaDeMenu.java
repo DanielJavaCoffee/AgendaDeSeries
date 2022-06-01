@@ -9,10 +9,15 @@ import entity.Usuario;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.Mensagem;
+import tela.TelaCadastroDeProgramaContinuo;
+import tela.TelaCadastroDeProgramaDeRealityShows;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeCadastroDeCanal;
-import tela.TelaDeListarCanal;
+import tela.TelaDeImagem;
+import tela.TelaListarTodosOsCanal;
 import tela.TelaDeMenu;
+import tela.TelaGerarPDF;
+import tela.TelaListarTodosOsProgramas;
 
 public class OuvinteTelaDeMenu implements ActionListener {
 
@@ -36,19 +41,32 @@ public class OuvinteTelaDeMenu implements ActionListener {
 			new TelaDeCadastroDeCanal(null);
 			telaDeMenu.setVisible(false);
 		} else if (comando.equals("Listar Canal")) {
-			new TelaDeListarCanal(null);
+			new TelaListarTodosOsCanal(null);
 			telaDeMenu.setVisible(false);
-		} else if (comando.equals("Cadastrar Programa")) {
+		} else if (comando.equals("Cadastrar Programas")) {
 
-			String[] opercao = { "Programa Séries Regulares", "Orçado" };
-			String entrada = (String) JOptionPane.showInputDialog(null, "Qual Tipo De Programa Você Deseja Cadastrar: ", "",
-					JOptionPane.WARNING_MESSAGE, null, opercao, opercao[0]);
+			String[] opercao = { "Programa Séries Regulares", "Programa De RealityShows", "Programa Continuo" };
+			String entrada = (String) JOptionPane.showInputDialog(null, "Qual Tipo De Programa Você Deseja Cadastrar: ",
+					"", JOptionPane.WARNING_MESSAGE, null, opercao, opercao[0]);
 			if (opercao[0] == entrada) {
 				new TelaCadastroDeProgramaSeriesRegulares(null);
 				telaDeMenu.setVisible(false);
+			} else if (opercao[1] == entrada) {
+                new TelaCadastroDeProgramaDeRealityShows(null);
+				telaDeMenu.setVisible(false);
+			} else {
+				new TelaCadastroDeProgramaContinuo(null);
+				telaDeMenu.setVisible(false);
 			}
+					
 		} else if (comando.equals("Listar Programas")) {
-
+            new TelaListarTodosOsProgramas(null);
+			telaDeMenu.setVisible(false);
+		} else if (comando.equals("Gerar PDF")) {
+			new TelaGerarPDF(null);
+			telaDeMenu.setVisible(false);
+		} else if(comando.equals("Foto")) {
+			new TelaDeImagem(null);
 			telaDeMenu.setVisible(false);
 		}
 	}

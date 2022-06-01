@@ -51,14 +51,13 @@ public class TelaEditarCadastroDeCanal extends JanelaPadrao {
 		nome.setBounds(30, 80, 140, 40);
 		add(nome);
 		
-		JLabel formaDeAssitir = new JLabel("Forma De Assistir: "); 
+	/*	JLabel formaDeAssitir = new JLabel("Forma De Assistir: "); 
 		formaDeAssitir.setBounds(30, 140, 140, 40);
 		add(formaDeAssitir);
-		
+	*/	
 	    JLabel canalOuLink = new JLabel("Número Do Canal Ou LinK: ");
 		canalOuLink.setBounds(30, 200, 160, 40);
      	add(canalOuLink);
-		
 	}
 
 	private void adicionarJTextFiled() {
@@ -68,11 +67,11 @@ public class TelaEditarCadastroDeCanal extends JanelaPadrao {
 		campoNome.setText(this.canal.getNome());
 		add(campoNome);
 		
-		campoFormaDeAssistir = new JTextField();
+	/*	campoFormaDeAssistir = new JTextField();
 		campoFormaDeAssistir.setBounds(200, 140, 200, 40);
 		campoFormaDeAssistir.setText(this.canal.getTipoDoCanal());
 		add(campoFormaDeAssistir);
-		
+	*/	
 		campoNumeroOuLink = new JTextField();
 		campoNumeroOuLink.setBounds(200, 200, 200, 40);
 		campoNumeroOuLink.setText(this.canal.getLinkOuCanal());
@@ -80,7 +79,6 @@ public class TelaEditarCadastroDeCanal extends JanelaPadrao {
 		
 		campoid = new JTextField();
 		campoid.setText(String.valueOf(this.canal.getId()));
-		
 	}
 	
 	public void adicionarJButtonsalvar() {

@@ -7,11 +7,11 @@ import tela.TelaDeLogin;
 
 public class Programa {
 
-	public static <T> void main(String[] args) {
-
+	public static void main(String[] args) {
+		
 		Persistencia persistencia = new Persistencia();
 		CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-
+		
 		if (centralDeInformacoes.getTodosOsUsuarios().size() > 0) {
 			new TelaDeLogin(null);
 		} else {

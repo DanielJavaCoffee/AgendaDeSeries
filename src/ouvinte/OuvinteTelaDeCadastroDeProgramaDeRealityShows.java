@@ -5,34 +5,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import entity.Canal;
-import entity.ProgramaSeriesRegulares;
-import enuns.DiasDaSemanas;
-import enuns.EstiloSeriesRegulares;
+import entity.ProgramaDeRealityShows;
 import enuns.StatusDeExebicao;
 import enuns.TipoDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.Mensagem;
+import tela.TelaCadastroDeProgramaDeRealityShows;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeMenu;
 
-public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionListener {
+public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionListener {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	private TelaCadastroDeProgramaSeriesRegulares telaCadastroDePrograma;
+	private TelaCadastroDeProgramaDeRealityShows telaCadastroDePrograma;
 
-	public TelaCadastroDeProgramaSeriesRegulares getTelaCadastroDePrograma() {
+	public TelaCadastroDeProgramaDeRealityShows getTelaCadastroDePrograma() {
 		return telaCadastroDePrograma;
 	}
 
-	public OuvinteTelaDeCadastroDeProgramaSeriesRegulares(TelaCadastroDeProgramaSeriesRegulares tela) {
+	public OuvinteTelaDeCadastroDeProgramaDeRealityShows(TelaCadastroDeProgramaDeRealityShows tela) {
 		this.telaCadastroDePrograma = tela;
 	}
 
@@ -50,31 +48,16 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 			String nome = telaCadastroDePrograma.getCampoNomeDoPrograma().getText();
 			long id = Long.parseLong(telaCadastroDePrograma.getCampoIDCanal().getText());
 			String horario = telaCadastroDePrograma.getCampoHorario().getText();
-			String genero = telaCadastroDePrograma.getCampoGenero().getText();
+			String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
 			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
-	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
-	        dia.toUpperCase();
-	        DiasDaSemanas dias = null;
-	        
-	        
-			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
+
+			if (nome.isBlank() || horario.isBlank() || apresentador.isBlank() || temporada.isBlank()) {
 				Mensagem.usuarioCampoVazio();
 			} else {
 
 				Canal canal = centralDeInformacoes.recuperarCanalId(id);
 
 				if (canal != null) {
-
-					String[] opercao = { "Live Action", "Animada" };
-					String entrada = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
-							JOptionPane.WARNING_MESSAGE, null, opercao, opercao[0]);
-					EstiloSeriesRegulares estilo = null;
-
-					if (opercao[0] == entrada) {
-						estilo = EstiloSeriesRegulares.LIVI_ACTION;
-					} else {
-						estilo = EstiloSeriesRegulares.ANIMADA;
-					} // end else
 
 					String[] status = { "Exibição", "Hiato", "Finalizado", "Cancelado" };
 					String entradaStatus = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
@@ -87,13 +70,14 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 					} else if (status[1] == entradaStatus) {
 						exebicao = StatusDeExebicao.HIATO;
 						data = formatar.parse(JOptionPane.showInputDialog("Data de exebição: Separe por barras /. "));
+
 					} else if (status[2] == entradaStatus) {
 						exebicao = StatusDeExebicao.FINALIZADO;
 					} else {
 						exebicao = StatusDeExebicao.CANCELADO;
-					}
-
-					ProgramaSeriesRegulares programa = new ProgramaSeriesRegulares(nome, exebicao, canal, null, horario, data, temporada, genero, estilo);
+					} // end else
+					ProgramaDeRealityShows programa = new ProgramaDeRealityShows(nome, apresentador, exebicao, canal,
+							null, horario, data, temporada);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
 					Mensagem.programaSalvo();
@@ -108,7 +92,6 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 		} catch (HeadlessException e1) {
 			e1.printStackTrace();
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // end catch
 	} // end action

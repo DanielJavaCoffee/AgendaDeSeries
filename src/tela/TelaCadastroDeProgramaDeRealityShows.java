@@ -20,24 +20,25 @@ import entity.Canal;
 import janelas.JanelaTelaCadastroDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
+import ouvinte.OuvinteTelaDeCadastroDeProgramaDeRealityShows;
 import ouvinte.OuvinteTelaDeCadastroDeProgramaSeriesRegulares;
 
-public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDePrograma {
+public class TelaCadastroDeProgramaDeRealityShows extends JanelaTelaCadastroDePrograma {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	OuvinteTelaDeCadastroDeProgramaSeriesRegulares ouvinte = new OuvinteTelaDeCadastroDeProgramaSeriesRegulares(this);
+	OuvinteTelaDeCadastroDeProgramaDeRealityShows ouvinte = new OuvinteTelaDeCadastroDeProgramaDeRealityShows(this);
 
 	private JTextField campoNomeDoPrograma;
 	private JTextField campoIDCanal;
 	private JTextField campoDiasDaSemana;
-	private JTextField campoGenero;
+	private JTextField campoApresentador;
 	private JTextField campoTemporada;
 	private JFormattedTextField campoHorario;
 	private JButton buttonVoltar;
 	private JButton buttonSalvar;
 
-	public TelaCadastroDeProgramaSeriesRegulares(String titulo) {
+	public TelaCadastroDeProgramaDeRealityShows(String titulo) {
 		super(titulo);
 		adicionarTitulo();
 		listarPrograma();
@@ -104,9 +105,9 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		horario.setBounds(40, 450, 130, 30);
 		add(horario);
 		
-		JLabel genero = new JLabel("Genero Do Programa: ");
-		genero.setBounds(40, 500, 130, 30);
-		add(genero);
+		JLabel apresentador = new JLabel("Nome Do/s Apresentado/res: ");
+		apresentador.setBounds(40, 500, 130, 30);
+		add(apresentador);
 		
 		JLabel temporada = new JLabel("Temporada: ");
 		temporada.setBounds(40, 550, 130, 30);
@@ -137,9 +138,9 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		campoHorario.setBounds(200, 450, 70, 30);
 		add(campoHorario);
 		
-		campoGenero = new JTextField();
-		campoGenero.setBounds(200, 500, 200, 30);
-		add(campoGenero);
+		campoApresentador = new JTextField();
+		campoApresentador.setBounds(200, 500, 200, 30);
+		add(campoApresentador);
 		
 		campoTemporada = new JTextField();
 		campoTemporada.setBounds(200, 550, 200, 30);
@@ -206,13 +207,11 @@ public class TelaCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDeP
 		return buttonSalvar;
 	}
 
-	public JTextField getCampoGenero() {
-		return campoGenero;
+	public JTextField getCampoApresentador() {
+		return campoApresentador;
 	}
 
 	public JTextField getCampoTemporada() {
 		return campoTemporada;
 	}
-	
-	
 }

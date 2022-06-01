@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import entity.Canal;
+import entity.ProgramaContinuo;
 import entity.ProgramaSeriesRegulares;
 import enuns.DiasDaSemanas;
 import enuns.EstiloSeriesRegulares;
@@ -19,20 +20,21 @@ import enuns.TipoDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.Mensagem;
+import tela.TelaCadastroDeProgramaContinuo;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeMenu;
 
-public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionListener {
+public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	private TelaCadastroDeProgramaSeriesRegulares telaCadastroDePrograma;
+	private TelaCadastroDeProgramaContinuo telaCadastroDePrograma;
 
-	public TelaCadastroDeProgramaSeriesRegulares getTelaCadastroDePrograma() {
+	public TelaCadastroDeProgramaContinuo getTelaCadastroDePrograma() {
 		return telaCadastroDePrograma;
 	}
 
-	public OuvinteTelaDeCadastroDeProgramaSeriesRegulares(TelaCadastroDeProgramaSeriesRegulares tela) {
+	public OuvinteTelaDeCadastroDeProgramaContinuo(TelaCadastroDeProgramaContinuo tela) {
 		this.telaCadastroDePrograma = tela;
 	}
 
@@ -50,14 +52,12 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 			String nome = telaCadastroDePrograma.getCampoNomeDoPrograma().getText();
 			long id = Long.parseLong(telaCadastroDePrograma.getCampoIDCanal().getText());
 			String horario = telaCadastroDePrograma.getCampoHorario().getText();
-			String genero = telaCadastroDePrograma.getCampoGenero().getText();
-			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
 	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
+	        String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
 	        dia.toUpperCase();
 	        DiasDaSemanas dias = null;
 	        
-	        
-			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
+			if (nome.isBlank() || horario.isBlank()) {
 				Mensagem.usuarioCampoVazio();
 			} else {
 
@@ -65,19 +65,8 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 
 				if (canal != null) {
 
-					String[] opercao = { "Live Action", "Animada" };
-					String entrada = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
-							JOptionPane.WARNING_MESSAGE, null, opercao, opercao[0]);
-					EstiloSeriesRegulares estilo = null;
-
-					if (opercao[0] == entrada) {
-						estilo = EstiloSeriesRegulares.LIVI_ACTION;
-					} else {
-						estilo = EstiloSeriesRegulares.ANIMADA;
-					} // end else
-
 					String[] status = { "Exibição", "Hiato", "Finalizado", "Cancelado" };
-					String entradaStatus = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
+					String entradaStatus = (String) JOptionPane.showInputDialog(null, "Status De Exebição: ", "",
 							JOptionPane.WARNING_MESSAGE, null, status, status[0]);
 
 					StatusDeExebicao exebicao = null;
@@ -91,9 +80,9 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 						exebicao = StatusDeExebicao.FINALIZADO;
 					} else {
 						exebicao = StatusDeExebicao.CANCELADO;
-					}
+					} // end else
 
-					ProgramaSeriesRegulares programa = new ProgramaSeriesRegulares(nome, exebicao, canal, null, horario, data, temporada, genero, estilo);
+					ProgramaContinuo programa = new ProgramaContinuo(nome, apresentador, exebicao, canal, null, horario, data);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
 					Mensagem.programaSalvo();
