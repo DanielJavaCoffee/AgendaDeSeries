@@ -1,5 +1,4 @@
 package application;
-
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import tela.TelaDeCadastroDeUsuario;

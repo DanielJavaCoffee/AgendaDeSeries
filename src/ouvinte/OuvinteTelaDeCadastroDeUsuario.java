@@ -3,10 +3,14 @@ package ouvinte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import entity.Usuario;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import model.Validacao;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemUsuario;
 import tela.TelaDeCadastroDeUsuario;
 import tela.TelaDeMenu;
 
@@ -34,23 +38,37 @@ public class OuvinteTelaDeCadastroDeUsuario implements ActionListener {
 		String senha02 = telaDeCadastroDeUsuario.getCampoSenha02().getText();
 		try {
 			if (nome.isBlank() || email.isBlank() || senha01.isBlank() || senha02.isBlank()) {
-				Mensagem.usuarioCampoVazio();
+
+				MensagemUsuario.usuarioCampoVazio();
+
 			} else if (!senha01.equals(senha02)) {
-				Mensagem.usuarioSenhaErrada();
+
+				MensagemUsuario.usuarioSenhaErrada();
+
 			} else {
+
 				Usuario usuario = new Usuario(nome, email, senha01, null);
+				Validacao validacao = new Validacao();
+				
+			//	validacao.validarSenha(usuario);
+			//	validacao.validarEmail(usuario);
+			//	validacao.validarNome(usuario);
+
 				if (centralDeInformacoes.salvarUsuario(usuario)) {
+					
 					persistencia.salvarCentral(centralDeInformacoes);
-					Mensagem.usuarioSalvo();
+					MensagemUsuario.usuarioSalvo();
 					new TelaDeMenu(null);
 					telaDeCadastroDeUsuario.setVisible(false);
+
 				} else {
-					Mensagem.usuarioErro();
+					MensagemUsuario.usuarioErro();
 				} // end else
 			} // end else
 		} catch (NullPointerException erro) {
-			System.out.println(erro.getMessage());
-			Mensagem.nullPointerException(erro);
-		} // end catch
+			MensagemException.nullPointerException(erro);
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(telaDeCadastroDeUsuario, e1.getMessage());
+		}
 	} // end actionPerformed
 } // end class

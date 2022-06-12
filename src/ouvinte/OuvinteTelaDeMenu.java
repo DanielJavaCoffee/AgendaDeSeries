@@ -3,12 +3,16 @@ package ouvinte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import entity.Usuario;
+import janelas.JanelaPadrao;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemUsuario;
+import tela.TelaAgendaDePrograma;
 import tela.TelaCadastroDeProgramaContinuo;
 import tela.TelaCadastroDeProgramaDeRealityShows;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
@@ -16,6 +20,7 @@ import tela.TelaDeCadastroDeCanal;
 import tela.TelaDeImagem;
 import tela.TelaListarTodosOsCanal;
 import tela.TelaDeMenu;
+import tela.TelaEnviarEmail;
 import tela.TelaGerarPDF;
 import tela.TelaListarTodosOsProgramas;
 
@@ -38,11 +43,15 @@ public class OuvinteTelaDeMenu implements ActionListener {
 
 		String comando = clique.getActionCommand();
 		if (comando.equals("Cadastrar Canal")) {
+			
 			new TelaDeCadastroDeCanal(null);
 			telaDeMenu.setVisible(false);
+			
 		} else if (comando.equals("Listar Canal")) {
+			
 			new TelaListarTodosOsCanal(null);
 			telaDeMenu.setVisible(false);
+			
 		} else if (comando.equals("Cadastrar Programas")) {
 
 			String[] opercao = { "Programa Séries Regulares", "Programa De RealityShows", "Programa Continuo" };
@@ -60,13 +69,28 @@ public class OuvinteTelaDeMenu implements ActionListener {
 			}
 					
 		} else if (comando.equals("Listar Programas")) {
+			
             new TelaListarTodosOsProgramas(null);
 			telaDeMenu.setVisible(false);
+			
 		} else if (comando.equals("Gerar PDF")) {
+			
 			new TelaGerarPDF(null);
 			telaDeMenu.setVisible(false);
+			
 		} else if(comando.equals("Foto")) {
+			
 			new TelaDeImagem(null);
+			telaDeMenu.setVisible(false);
+			
+		} else if(comando.equals("Minha Agenda")) {
+			
+			new TelaAgendaDePrograma(null);
+			telaDeMenu.setVisible(false);
+
+		} else if(comando.equals("Enviar Minha Agenda Por Email")) {
+			
+			new TelaEnviarEmail(null);
 			telaDeMenu.setVisible(false);
 		}
 	}
@@ -75,19 +99,20 @@ public class OuvinteTelaDeMenu implements ActionListener {
 
 		try {
 
-			String nome = JOptionPane.showInputDialog("informe o email");
+			String nome = JOptionPane.showInputDialog("informe o nome:");
 			Usuario usuario = centralDeInformacoes.recuperarUsuario(nome);
 
 			if (usuario != null) {
 				centralDeInformacoes.excluirUsuario(usuario);
 				persistencia.salvarCentral(centralDeInformacoes);
-				Mensagem.usuarioExcluir();
+				MensagemUsuario.usuarioExcluir();
+				System.exit(0);
 			} else {
-				Mensagem.usuarioNaoEncontrado();
+				MensagemUsuario.usuarioNaoEncontrado();
 			}
 
 		} catch (NullPointerException e) {
-			Mensagem.nullPointerException(e);
+			MensagemException.nullPointerException(e);
 		}
 	}
 }

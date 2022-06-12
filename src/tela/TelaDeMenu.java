@@ -85,6 +85,15 @@ public class TelaDeMenu extends JanelaPadrao {
 		JMenuItem foto = new JMenuItem("Foto");
 		menuOp.add(foto);
 		foto.addActionListener(ouvinte);
+		
+		JMenuItem agenda = new JMenuItem("Minha Agenda");
+		menuOp.add(agenda);
+		agenda.addActionListener(ouvinte);
+		
+		JMenuItem emial = new JMenuItem("Enviar Minha Agenda Por Email");
+		menuOp.add(emial);
+		emial.addActionListener(ouvinte);
+		
 	}
 
 	public JButton getButtonExcluir() {

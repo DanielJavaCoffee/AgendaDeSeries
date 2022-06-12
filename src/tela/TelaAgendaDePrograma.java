@@ -17,42 +17,38 @@ import entity.ProgramaContinuo;
 import entity.ProgramaDeRealityShows;
 import entity.ProgramaDeTV;
 import entity.ProgramaSeriesRegulares;
-import enuns.EstiloSeriesRegulares;
 import janelas.JanelaListarProgramas;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import ouvinte.OuvinteTelaListarTodosOsProgramas;
+import ouvinte.OuvinteTelaAgendaDePrograma;
 
-public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
-
+public class TelaAgendaDePrograma extends JanelaListarProgramas {
+	
+	
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
 
-	OuvinteTelaListarTodosOsProgramas ouvinte = new OuvinteTelaListarTodosOsProgramas(this);
+	OuvinteTelaAgendaDePrograma ouvinte = new OuvinteTelaAgendaDePrograma(this);
 
 	private JButton buttonVoltar;
 	private JButton buttonExcluir;
-	private JButton buttonAtualizar;
 	private JButton buttonDetalhar;
-	private JButton buttonAdicionarNaAgenda;
 	private JTextField campoBusca;
-
-	public TelaListarTodosOsProgramas(String titulo) {
+	
+	public TelaAgendaDePrograma(String titulo) {
 		super(titulo);
-
 		adicionarJLabel();
 		adicionarJButtonVoltar();
-		adicionarJButtonAtualizar();
 		adicionarJButtonExcluir();
 		adicionarJButtonDetalhar();
-		adicionarJButtonAdcionar();
 		listarCanal();
 		setVisible(true);
 	}
 
+
 	private void adicionarJLabel() {
 
-		JLabel jLabel = new JLabel("TELA DE LISTAR PROGRAMA, EXCLUIR, DETALHAR, ADICIONAR NA AGENDA E ATUALIZAR", JLabel.CENTER);
+		JLabel jLabel = new JLabel("TELA DE AGENDA, REMOVER, DETALHAR", JLabel.CENTER);
 		jLabel.setBackground(Color.GRAY);
 		jLabel.setOpaque(true);
 		jLabel.setBounds(0, 0, 1200, 50);
@@ -75,25 +71,9 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		};
 	}
 
-	private void adicionarJButtonAtualizar() {
-
-		buttonAtualizar = new JButton("Atualizar");
-		buttonAtualizar.setBounds(850, 600, 100, 30);
-		buttonAtualizar.addActionListener(atualizar());
-		add(buttonAtualizar);
-	}
-
-	public ActionListener atualizar() {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ouvinte.actionPerformedAtualizar(e);
-			}
-		};
-	}
-
 	private void adicionarJButtonExcluir() {
 
-		buttonExcluir = new JButton("Excluir");
+		buttonExcluir = new JButton("Remover");
 		buttonExcluir.setBounds(980, 600, 100, 30);
 		buttonExcluir.addActionListener(excluir());
 		add(buttonExcluir);
@@ -110,7 +90,7 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 	private void adicionarJButtonDetalhar() {
 
 		buttonDetalhar = new JButton("Detalhar");
-		buttonDetalhar.setBounds(700, 600, 100, 30);
+		buttonDetalhar.setBounds(850, 600, 100, 30);
 		buttonDetalhar.addActionListener(detalhar());
 		add(buttonDetalhar);
 	}
@@ -124,21 +104,6 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		};
 	}
 	
-	public void adicionarJButtonAdcionar(){
-		
-		buttonAdicionarNaAgenda = new JButton("Adicionar na minha Agenda");
-		buttonAdicionarNaAgenda.setBounds(430, 600, 200, 30);
-		buttonAdicionarNaAgenda.addActionListener(adicionar());
-		add(buttonAdicionarNaAgenda);
-	}
-	
-	public ActionListener adicionar() {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ouvinte.actionPerformedAdicionarNaAgenda(e);
-			}
-		};
-	}
 
 	private void listarCanal() {
 
@@ -157,11 +122,13 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		modelo.addColumn("Estilo");
 		modelo.addColumn("ID");
 		
-		List<ProgramaDeTV> programa = centralDeInformacoes.getTodosOsProgramas();
+		List<ProgramaDeTV> programa = centralDeInformacoes.getTodasAsAgendas();
 
 		Collections.sort(programa);
 
 		Object[] linhas = new Object[programa.size()];
+		
+	
 
 		for (ProgramaDeTV p : programa) {
 
@@ -234,10 +201,6 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		return buttonExcluir;
 	}
 
-	public JButton getButtonAtualizar() {
-		return buttonAtualizar;
-	}
-
 	public JTextField getCampoBusca() {
 		return campoBusca;
 	}
@@ -246,7 +209,7 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		return buttonDetalhar;
 	}
 	
-	public JButton getButtonAdicionarNaAgenda() {
-		return buttonAdicionarNaAgenda;
-	}
 }
+
+
+

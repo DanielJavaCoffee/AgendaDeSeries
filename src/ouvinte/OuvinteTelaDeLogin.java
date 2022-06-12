@@ -9,7 +9,9 @@ import entity.Usuario;
 import model.CentralDeInformacoes;
 import model.Mensageiro;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemEmail;
+import personalizedMessage.MensagemUsuario;
 import tela.TelaDeLogin;
 import tela.TelaDeMenu;
 
@@ -35,17 +37,17 @@ public class OuvinteTelaDeLogin implements ActionListener {
 		try {
 
 			if (email.isBlank() || senha.isBlank()) {
-				Mensagem.usuarioCampoVazio();
+				MensagemUsuario.usuarioCampoVazio();
 			} else {
 				if(centralDeInformacoes.isLogin(email, senha)) {
 					new TelaDeMenu(null);
 					telaDeLogin.setVisible(false);
 				} else {
-					Mensagem.usuarioNaoEncontrado();
+					MensagemUsuario.usuarioNaoEncontrado();
 				} // end else
 			} // end else
 		} catch (NullPointerException e) {
-			Mensagem.nullPointerException(e);
+			MensagemException.nullPointerException(e);
 		} // end catch
 	} // actionPerformed
 
@@ -56,9 +58,9 @@ public class OuvinteTelaDeLogin implements ActionListener {
 		
 		if(usuario != null) {
 			Mensageiro.enviarProgramacaoDeHoje("Seus Dados Do APP", usuario.getEmail(), usuario.toString());
-			Mensagem.emailEnviadoUsuario();
+			MensagemEmail.emailEnviadoUsuario();
 		} else {
-			Mensagem.usuarioNaoEncontrado();
+			MensagemUsuario.usuarioNaoEncontrado();
 		} // end else
 	} // end actionPerformedSenha
 }

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import entity.Canal;
 import entity.ProgramaContinuo;
+import entity.ProgramaDeTV;
 import enuns.DiasDaSemanas;
 import enuns.StatusDeExebicao;
 import model.CentralDeInformacoes;
@@ -19,43 +20,47 @@ import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemCanal;
 import personalizedMessage.MensagemPrograma;
 import personalizedMessage.MensagemUsuario;
-import tela.TelaCadastroDeProgramaContinuo;
-import tela.TelaCadastroDeProgramaSeriesRegulares;
-import tela.TelaDeMenu;
+import tela.TelaEditarProgramaContinuo;
+import tela.TelaListarTodosOsProgramas;
 
-public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
+public class OuvinteTelaEditarProgramaContinuo implements ActionListener {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	private TelaCadastroDeProgramaContinuo telaCadastroDePrograma;
 
-	public TelaCadastroDeProgramaContinuo getTelaCadastroDePrograma() {
-		return telaCadastroDePrograma;
+	private TelaEditarProgramaContinuo editarProgramaContinuo;
+
+	public TelaEditarProgramaContinuo tela() {
+		return editarProgramaContinuo;
 	}
 
-	public OuvinteTelaDeCadastroDeProgramaContinuo(TelaCadastroDeProgramaContinuo tela) {
-		this.telaCadastroDePrograma = tela;
+	public OuvinteTelaEditarProgramaContinuo(TelaEditarProgramaContinuo tela) {
+		this.editarProgramaContinuo = tela;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		new TelaDeMenu(null);
-		telaCadastroDePrograma.setVisible(false);
-	} // end action
+
+		new TelaListarTodosOsProgramas(null);
+		editarProgramaContinuo.setVisible(true);
+	}
 
 	public void actionPerformedSalvar(ActionEvent e) {
 
 		try {
 
 			SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+
 			Date data = null;
-			String nome = telaCadastroDePrograma.getCampoNomeDoPrograma().getText();
-			long id = Long.parseLong(telaCadastroDePrograma.getCampoIDCanal().getText());
-			String horario = telaCadastroDePrograma.getCampoHorario().getText();
-	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
-	        String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
-	        dia.toUpperCase();
-	        DiasDaSemanas dias = null;
-	        
+			String nome = editarProgramaContinuo.getCampoNomeDoPrograma().getText();
+			long id = Long.parseLong(editarProgramaContinuo.getCampoIDCanal().getText());
+			String horario = editarProgramaContinuo.getCampoHorario().getText();
+			String dia = editarProgramaContinuo.getCampoDiasDaSemana().getText();
+			String apresentador = editarProgramaContinuo.getCampoApresentador().getText();
+			dia.toUpperCase();
+			DiasDaSemanas dias = null;
+			long idPrograma = Long.parseLong(editarProgramaContinuo.getCampoID().getText());
+
 			if (nome.isBlank() || horario.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {
@@ -81,16 +86,31 @@ public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 						exebicao = StatusDeExebicao.CANCELADO;
 					} // end else
 
-					ProgramaContinuo programa = new ProgramaContinuo(nome, apresentador, exebicao, canal, null, horario, data);
-					centralDeInformacoes.adicionarProgramaDeTV(programa);
-					persistencia.salvarCentral(centralDeInformacoes);
-					MensagemPrograma.programaSalvo();
-					new TelaCadastroDeProgramaSeriesRegulares(null);
-					telaCadastroDePrograma.setVisible(false);
-				} else {
-					MensagemCanal.canalNaoEncontardo();
-				} // end else
-			} // end if
+					ProgramaDeTV programa = centralDeInformacoes.recuperarProgramaDeTVporId(idPrograma);
+
+					if (programa instanceof ProgramaContinuo) {
+						ProgramaContinuo pc = (ProgramaContinuo) programa;
+
+						if (programa != null) {
+
+							pc.setNome(nome);
+							pc.setNomeDoApresentador(apresentador);
+							pc.setStatusDeExebicao(exebicao);
+							pc.setCanal(canal);
+							pc.setDias(null);
+							pc.setHorario(horario);
+							pc.setDataHiato(data);
+							
+							persistencia.salvarCentral(centralDeInformacoes);
+							MensagemPrograma.programaSalvo();
+							new TelaListarTodosOsProgramas(null);
+							editarProgramaContinuo.setVisible(false);
+						}
+					} else {
+						MensagemCanal.canalNaoEncontardo();
+					}
+				}
+			}  
 		} catch (NumberFormatException number) {
 			MensagemException.numberFormatException(number);
 		} catch (HeadlessException e1) {
@@ -99,5 +119,5 @@ public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // end catch
-	} // end action
-} // end class
+	}
+}

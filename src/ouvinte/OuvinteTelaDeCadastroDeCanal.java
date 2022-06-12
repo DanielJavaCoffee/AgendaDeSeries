@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import entity.Canal;
-import enuns.StatusDeExebicao;
 import enuns.TipoDeCanal;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemCanal;
+import personalizedMessage.MensagemUsuario;
 import tela.TelaDeCadastroDeCanal;
 import tela.TelaDeMenu;
 
@@ -62,12 +62,12 @@ public class OuvinteTelaDeCadastroDeCanal implements ActionListener {
 		} 
 		
 		if (nome.isBlank() || canalOuLink.isBlank()) {
-			Mensagem.usuarioCampoVazio();
+			MensagemUsuario.usuarioCampoVazio();
 		} else {
 			Canal canal = new Canal(nome, exebicao.toString(), canalOuLink);
 			centralDeInformacoes.salvarCanal(canal);
 			persistencia.salvarCentral(centralDeInformacoes);
-			Mensagem.canalSalvo();
+			MensagemCanal.canalSalvo();
 			new TelaDeCadastroDeCanal(null);
 			telaDeCadastroDeCanal.setVisible(false);
 			

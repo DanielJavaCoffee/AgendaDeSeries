@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -15,10 +14,12 @@ import entity.ProgramaSeriesRegulares;
 import enuns.DiasDaSemanas;
 import enuns.EstiloSeriesRegulares;
 import enuns.StatusDeExebicao;
-import enuns.TipoDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemCanal;
+import personalizedMessage.MensagemPrograma;
+import personalizedMessage.MensagemUsuario;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeMenu;
 
@@ -58,7 +59,7 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 	        
 	        
 			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
-				Mensagem.usuarioCampoVazio();
+				MensagemUsuario.usuarioCampoVazio();
 			} else {
 
 				Canal canal = centralDeInformacoes.recuperarCanalId(id);
@@ -96,15 +97,15 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 					ProgramaSeriesRegulares programa = new ProgramaSeriesRegulares(nome, exebicao, canal, null, horario, data, temporada, genero, estilo);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
-					Mensagem.programaSalvo();
+					MensagemPrograma.programaSalvo();
 					new TelaCadastroDeProgramaSeriesRegulares(null);
 					telaCadastroDePrograma.setVisible(false);
 				} else {
-					Mensagem.canalNaoEncontardo();
+					MensagemCanal.canalNaoEncontardo();
 				} // end else
 			} // end if
 		} catch (NumberFormatException number) {
-			Mensagem.numberFormatException(number);
+			MensagemException.numberFormatException(number);
 		} catch (HeadlessException e1) {
 			e1.printStackTrace();
 		} catch (ParseException e1) {

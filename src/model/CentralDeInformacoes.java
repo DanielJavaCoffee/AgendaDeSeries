@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Agenda;
 import entity.Canal;
 import entity.ProgramaDeTV;
 import entity.Usuario;
@@ -13,8 +12,7 @@ public class CentralDeInformacoes {
 	private List<ProgramaDeTV> todosOsProgramas = new ArrayList<ProgramaDeTV>();
 	private List<Canal> todosOsCanais = new ArrayList<Canal>();
 	private List<Usuario> todosOsUsuarios = new ArrayList<Usuario>();
-	
-	
+
 	private List<ProgramaDeTV> todasAsAgendas = new ArrayList<>();
 
 	public boolean adicionarProgramaDeTV(ProgramaDeTV programa) {
@@ -116,12 +114,30 @@ public class CentralDeInformacoes {
 	}
 
 	public boolean AdicionarAgenda(ProgramaDeTV programaDeTV) {
-	     for(int i = 0; i < todasAsAgendas.size(); i++) {
-	    	 if(todasAsAgendas.get(i).getId() == programaDeTV.getId());
-	    	 return false;
-	     }
-	     todasAsAgendas.add(programaDeTV);
-	     return true;
+		for (int i = 0; i < todasAsAgendas.size(); i++) {
+			if (todasAsAgendas.get(i).getId() == programaDeTV.getId()) {
+				return false;
+			}
+		}
+		todasAsAgendas.add(programaDeTV);
+		return true;
+	}
+
+	public boolean excluirAgenda(ProgramaDeTV programaDeTV) {
+		if (todasAsAgendas.contains(programaDeTV)) {
+			todasAsAgendas.remove(programaDeTV);
+			return true;
+		}
+		return false;
+	}
+
+	public ProgramaDeTV recuperarAgenda(long id) {
+		for (int i = 0; i < todasAsAgendas.size(); i++) {
+			if (todasAsAgendas.get(i).getId() == id) {
+				return todasAsAgendas.get(i);
+			}
+		}
+		return null;
 	}
 
 	public List<Canal> getTodosOsCanais() {

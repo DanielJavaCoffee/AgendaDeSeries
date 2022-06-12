@@ -67,7 +67,6 @@ public class ProgramaSeriesRegulares extends ProgramaDeTV {
 		this.temparada = temparada;
 	}
 
-	@Override
 	public int compareTo(ProgramaDeTV o) {
 		return 0;
 	}

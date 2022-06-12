@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import model.CentralDeInformacoes;
 import model.GeradorDeRelatorio;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemPDF;
 import tela.TelaDeMenu;
 import tela.TelaGerarPDF;
 
@@ -34,6 +34,6 @@ public class OuvinteTelaGerarPDF implements ActionListener {
 
 	public void actionPerformedGerarPDF(ActionEvent e) {
 		GeradorDeRelatorio.obterProgramacaoDeUmCanal(centralDeInformacoes.getTodosOsProgramas());
-		Mensagem.PDFCriado();
+		MensagemPDF.PDFCriado();
 	}
 }

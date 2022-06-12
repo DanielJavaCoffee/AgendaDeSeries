@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import janelas.JanelaPadrao;
 import ouvinte.OuvinteTelaDeCadastroDeUsuario;
 
+
 public class TelaDeCadastroDeUsuario extends JanelaPadrao {
 	
 	OuvinteTelaDeCadastroDeUsuario ouvinte = new OuvinteTelaDeCadastroDeUsuario(this);
@@ -21,6 +22,7 @@ public class TelaDeCadastroDeUsuario extends JanelaPadrao {
 	private JPasswordField campoSenha01;
 	private JPasswordField campoSenha02;
 	private JButton buttonSalvar;
+	
 
 	public TelaDeCadastroDeUsuario(String titulo) {
 		super(titulo);

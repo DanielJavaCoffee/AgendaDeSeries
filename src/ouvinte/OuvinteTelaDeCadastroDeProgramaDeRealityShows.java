@@ -15,7 +15,10 @@ import enuns.StatusDeExebicao;
 import enuns.TipoDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemCanal;
+import personalizedMessage.MensagemPrograma;
+import personalizedMessage.MensagemUsuario;
 import tela.TelaCadastroDeProgramaDeRealityShows;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeMenu;
@@ -52,7 +55,7 @@ public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionList
 			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
 
 			if (nome.isBlank() || horario.isBlank() || apresentador.isBlank() || temporada.isBlank()) {
-				Mensagem.usuarioCampoVazio();
+				MensagemUsuario.usuarioCampoVazio();
 			} else {
 
 				Canal canal = centralDeInformacoes.recuperarCanalId(id);
@@ -80,15 +83,15 @@ public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionList
 							null, horario, data, temporada);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
-					Mensagem.programaSalvo();
+					MensagemPrograma.programaSalvo();
 					new TelaCadastroDeProgramaSeriesRegulares(null);
 					telaCadastroDePrograma.setVisible(false);
 				} else {
-					Mensagem.canalNaoEncontardo();
+					MensagemCanal.canalNaoEncontardo();
 				} // end else
 			} // end if
 		} catch (NumberFormatException number) {
-			Mensagem.numberFormatException(number);
+			MensagemException.numberFormatException(number);
 		} catch (HeadlessException e1) {
 			e1.printStackTrace();
 		} catch (ParseException e1) {

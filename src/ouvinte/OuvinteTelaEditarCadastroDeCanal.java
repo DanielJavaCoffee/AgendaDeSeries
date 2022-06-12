@@ -9,9 +9,9 @@ import entity.Canal;
 import enuns.TipoDeCanal;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
-import tela.TelaListarTodosOsCanal;
+import personalizedMessage.MensagemCanal;
 import tela.TelaEditarCadastroDeCanal;
+import tela.TelaListarTodosOsCanal;
 
 public class OuvinteTelaEditarCadastroDeCanal implements ActionListener {
 
@@ -60,11 +60,11 @@ public class OuvinteTelaEditarCadastroDeCanal implements ActionListener {
 			canal.setTipoDoCanal(exebicao.toString());
 			canal.setLinkOuCanal(linkOuCanal);
 			persistencia.salvarCentral(centralDeInformacoes);
-			Mensagem.canalAtualizado();
+			MensagemCanal.canalAtualizado();
 			new TelaListarTodosOsCanal(null);
 			telaEditarCadastroDeCanal.setVisible(false);
 		} else {
-			Mensagem.canalNaoEncontardo();
+			MensagemCanal.canalNaoEncontardo();
 		}
 	}
 

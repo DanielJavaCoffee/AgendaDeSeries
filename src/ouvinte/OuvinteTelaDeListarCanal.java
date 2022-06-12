@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 import entity.Canal;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.Mensagem;
+import personalizedMessage.MensagemException;
+import personalizedMessage.MensagemCanal;
 import tela.TelaListarTodosOsCanal;
 import tela.TelaDeMenu;
 
@@ -37,43 +38,40 @@ public class OuvinteTelaDeListarCanal implements ActionListener {
 			Canal canal = centralDeInformacoes.recuperarCanal(nome);
 			if (canal != null) {
 				centralDeInformacoes.excluirCanal(canal);
-				Mensagem.canalExcluido();
+				MensagemCanal.canalExcluido();
 				persistencia.salvarCentral(centralDeInformacoes);
 				telaDeListarCanal.setVisible(false);
 				new TelaListarTodosOsCanal(null);
 			} else {
-				Mensagem.canalNaoEncontardo();
+				MensagemCanal.canalNaoEncontardo();
 			}
 		} catch (NumberFormatException erro) {
-			Mensagem.numberFormatException(erro);
+			MensagemException.numberFormatException(erro);
 		}
 	}
 
 	public void actionPerformedAtualizar(ActionEvent e) {
-		try {
 
-			String nome = JOptionPane.showInputDialog("Informe o nome do Canal: ");
-			Canal canal = centralDeInformacoes.recuperarCanal(nome);
-			if (canal != null) {
-                new tela.TelaEditarCadastroDeCanal(null, canal);
-				telaDeListarCanal.setVisible(false);
-			} else {
-				Mensagem.canalNaoEncontardo();
-			}
-		} catch (NumberFormatException erro) {
-			Mensagem.numberFormatException(erro);
+		String nome = JOptionPane.showInputDialog("Informe o nome do Canal: ");
+		Canal canal = centralDeInformacoes.recuperarCanal(nome);
+		if (canal != null) {
+			new tela.TelaEditarCadastroDeCanal(null, canal);
+			telaDeListarCanal.setVisible(false);
+		} else {
+			MensagemCanal.canalNaoEncontardo();
 		}
+
 	}
 
 	public void actionPerformedDetalhar(ActionEvent e) {
-		
+
 		String nome = JOptionPane.showInputDialog("Nome Do Canal");
 		Canal canal = centralDeInformacoes.recuperarCanal(nome);
-		
-		if(canal != null) {
-			Mensagem.detalharCanal(canal);
+
+		if (canal != null) {
+			MensagemCanal.detalharCanal(canal);
 		} else {
-			Mensagem.canalNaoEncontardo();
+			MensagemCanal.canalNaoEncontardo();
 		}
 	}
 }

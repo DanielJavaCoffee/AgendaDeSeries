@@ -1,7 +1,5 @@
 package entity;
 
-import enuns.TipoDeCanal;
-
 public class Canal implements Comparable<Canal> {
 
 	private String nome;

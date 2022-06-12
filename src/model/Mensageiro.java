@@ -34,7 +34,7 @@ public class Mensageiro {
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication()
                     {
-                        return new PasswordAuthentication("projeto2021ifpb@gmail.com", "Da76agH!"); // remetente e senha
+                        return new PasswordAuthentication("projeto2021ifpb@gmail.com", "qxjdrsoajgdyigsm"); // remetente e senha
                     }
                 }); //remetente
 
