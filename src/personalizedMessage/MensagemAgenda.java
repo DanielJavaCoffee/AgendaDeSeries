@@ -1,5 +1,7 @@
 package personalizedMessage;
 
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import entity.ProgramaDeTV;
@@ -20,6 +22,11 @@ public class MensagemAgenda {
 	
 	public static void detalhar(ProgramaDeTV programaDeTV) {
 		JOptionPane.showMessageDialog(null, programaDeTV.toString());
+	}
+	
+	public static void hiatoHoje(Date date, ProgramaDeTV programaDeTV) {
+		JOptionPane.showMessageDialog(null, "Existe um programa seu em Hiato " + date + " você pode mudar o status para em andamento. " 
+				+ programaDeTV);
 	}
 
 }

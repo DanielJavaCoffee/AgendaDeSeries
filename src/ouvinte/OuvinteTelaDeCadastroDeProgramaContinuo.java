@@ -87,6 +87,7 @@ public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 					MensagemPrograma.programaSalvo();
 					new TelaCadastroDeProgramaSeriesRegulares(null);
 					telaCadastroDePrograma.setVisible(false);
+					
 				} else {
 					MensagemCanal.canalNaoEncontardo();
 				} // end else
