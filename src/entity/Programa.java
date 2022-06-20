@@ -1,23 +1,21 @@
 package entity;
 
-import java.util.ArrayList;
+import java.time.DayOfWeek;
 import java.util.Date;
-import java.util.List;
 
-import enuns.DiasDaSemanas;
 import enuns.StatusDeExebicao;
 import enuns.TipoDePrograma;
 
-public abstract class ProgramaDeTV implements Comparable<ProgramaDeTV>{
+public abstract class Programa implements Comparable<Programa>{
 
 	private String nome;
 	private long id;
 	private Canal canal;
-	private List<DiasDaSemanas> dias = new ArrayList<DiasDaSemanas>();
 	private String horario;
 	private TipoDePrograma tipoDePrograma;
 	private StatusDeExebicao statusDeExebicao;
 	private Date dataHiato;
+	private DayOfWeek diasDaSemana[];
 
 	public abstract String toString();
 	
@@ -40,15 +38,7 @@ public abstract class ProgramaDeTV implements Comparable<ProgramaDeTV>{
 	public long getId() {
 		return id;
 	}
-
-	public List<DiasDaSemanas> getDias() {
-		return dias;
-	}
-
-	public void setDias(List<DiasDaSemanas> dias) {
-		this.dias = dias;
-	}
-
+	
 	public String getHorario() {
 		return horario;
 	}
@@ -84,4 +74,13 @@ public abstract class ProgramaDeTV implements Comparable<ProgramaDeTV>{
 	public void setTipoDePrograma(TipoDePrograma tipoDePrograma) {
 		this.tipoDePrograma = tipoDePrograma;
 	}
+
+	public DayOfWeek[] getDiasDaSemana() {
+		return diasDaSemana;
+	}
+
+	public void setDiasDaSemana(DayOfWeek[] diasDaSemana) {
+		this.diasDaSemana = diasDaSemana;
+	}
+	
 }

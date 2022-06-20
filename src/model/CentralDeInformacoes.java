@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Canal;
-import entity.ProgramaDeTV;
+import entity.Programa;
 import entity.Usuario;
 
 public class CentralDeInformacoes {
 
-	private List<ProgramaDeTV> todosOsProgramas = new ArrayList<ProgramaDeTV>();
+	private List<Programa> todosOsProgramas = new ArrayList<Programa>();
 	private List<Canal> todosOsCanais = new ArrayList<Canal>();
 	private List<Usuario> todosOsUsuarios = new ArrayList<Usuario>();
 
-	private List<ProgramaDeTV> todasAsAgendas = new ArrayList<>();
+	private List<Programa> todasAsAgendas = new ArrayList<>();
 
-	public boolean adicionarProgramaDeTV(ProgramaDeTV programa) {
-		ProgramaDeTV programas = this.recuperarProgramaDeTVporId(programa.getId());
+	public boolean adicionarProgramaDeTV(Programa programa) {
+		Programa programas = this.recuperarProgramaDeTVporId(programa.getId());
 
 		if (programas != null) {
 			return false;
@@ -25,7 +25,7 @@ public class CentralDeInformacoes {
 		return true;
 	}
 
-	public ProgramaDeTV recuperarProgramaDeTVporId(long id) {
+	public Programa recuperarProgramaDeTVporId(long id) {
 		for (int i = 0; i < todosOsProgramas.size(); i++) {
 			if (todosOsProgramas.get(i).getId() == id) {
 				return todosOsProgramas.get(i);
@@ -34,7 +34,7 @@ public class CentralDeInformacoes {
 		return null;
 	}
 
-	public boolean excluirPrograma(ProgramaDeTV programa) {
+	public boolean excluirPrograma(Programa programa) {
 		if (todosOsProgramas.contains(programa)) {
 			todosOsProgramas.remove(programa);
 			return true;
@@ -113,7 +113,7 @@ public class CentralDeInformacoes {
 		return false;
 	}
 
-	public boolean AdicionarAgenda(ProgramaDeTV programaDeTV) {
+	public boolean AdicionarAgenda(Programa programaDeTV) {
 		for (int i = 0; i < todasAsAgendas.size(); i++) {
 			if (todasAsAgendas.get(i).getId() == programaDeTV.getId()) {
 				return false;
@@ -123,7 +123,7 @@ public class CentralDeInformacoes {
 		return true;
 	}
 
-	public boolean excluirAgenda(ProgramaDeTV programaDeTV) {
+	public boolean excluirAgenda(Programa programaDeTV) {
 		if (todasAsAgendas.contains(programaDeTV)) {
 			todasAsAgendas.remove(programaDeTV);
 			return true;
@@ -131,7 +131,7 @@ public class CentralDeInformacoes {
 		return false;
 	}
 
-	public ProgramaDeTV recuperarAgenda(long id) {
+	public Programa recuperarAgenda(long id) {
 		for (int i = 0; i < todasAsAgendas.size(); i++) {
 			if (todasAsAgendas.get(i).getId() == id) {
 				return todasAsAgendas.get(i);
@@ -156,19 +156,19 @@ public class CentralDeInformacoes {
 		this.todosOsUsuarios = todosOsUsuarios;
 	}
 
-	public List<ProgramaDeTV> getTodasAsAgendas() {
+	public List<Programa> getTodasAsAgendas() {
 		return todasAsAgendas;
 	}
 
-	public void setTodasAsAgendas(List<ProgramaDeTV> todasAsAgendas) {
+	public void setTodasAsAgendas(List<Programa> todasAsAgendas) {
 		this.todasAsAgendas = todasAsAgendas;
 	}
 
-	public List<ProgramaDeTV> getTodosOsProgramas() {
+	public List<Programa> getTodosOsProgramas() {
 		return todosOsProgramas;
 	}
 
-	public void setTodosOsProgramasSeriesRegulares(List<ProgramaDeTV> todosOsProgramas) {
+	public void setTodosOsProgramasSeriesRegulares(List<Programa> todosOsProgramas) {
 		this.todosOsProgramas = todosOsProgramas;
 	}
 }

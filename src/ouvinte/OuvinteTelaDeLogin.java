@@ -39,7 +39,7 @@ public class OuvinteTelaDeLogin implements ActionListener {
 			if (email.isBlank() || senha.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {
-				if(centralDeInformacoes.isLogin(email, senha)) {
+				if (centralDeInformacoes.isLogin(email, senha)) {
 					new TelaDeMenu(null);
 					telaDeLogin.setVisible(false);
 				} else {
@@ -53,14 +53,22 @@ public class OuvinteTelaDeLogin implements ActionListener {
 
 	public void actionPerformedSenha(ActionEvent senha) {
 
-		String nome = JOptionPane.showInputDialog(telaDeLogin, "Informe o nome do usuário: ");
-		Usuario usuario = centralDeInformacoes.recuperarUsuario(nome);
-		
-		if(usuario != null) {
-			Mensageiro.enviarProgramacaoDeHoje("Seus Dados Do APP", usuario.getEmail(), usuario.toString());
-			MensagemEmail.emailEnviadoUsuario();
+		String nomeEmail = JOptionPane.showInputDialog(telaDeLogin, "Informe o nome do usuário ou um email: ");
+		Usuario usuario = centralDeInformacoes.recuperarUsuario(nomeEmail);
+
+		if (!nomeEmail.contains("@")) {
+
+			if (usuario != null) {
+				Mensageiro.enviarProgramacaoDeHoje("Seus Dados Do APP", usuario.getEmail(), usuario.toString());
+				MensagemEmail.emailEnviadoUsuario();
+			} else {
+				MensagemUsuario.usuarioNaoEncontrado();
+			} // end else
+
 		} else {
-			MensagemUsuario.usuarioNaoEncontrado();
+			
+			Mensageiro.enviarProgramacaoDeHoje("Seus Dados Do APP", nomeEmail, centralDeInformacoes.getTodosOsUsuarios().toString());
+			MensagemEmail.emailEnviadoUsuario();	
 		} // end else
 	} // end actionPerformedSenha
-}
+} // end class

@@ -12,12 +12,12 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import entity.ProgramaDeTV;
+import entity.Programa;
 
 public class GeradorDeRelatorio {
 	
 	
-	public static void obterProgramacaoDeUmCanal(List<ProgramaDeTV> list) {
+	public static void obterProgramacaoDeUmCanal(List<Programa> list) {
 
         Document document = new Document(PageSize.A4);
 

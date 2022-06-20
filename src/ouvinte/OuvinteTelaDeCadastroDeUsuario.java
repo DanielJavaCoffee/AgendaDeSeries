@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import entity.Usuario;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import model.Validacao;
+import model.ValidacaoDeCadastroDeUsuario;
 import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemUsuario;
 import tela.TelaDeCadastroDeUsuario;
@@ -48,11 +48,11 @@ public class OuvinteTelaDeCadastroDeUsuario implements ActionListener {
 			} else {
 
 				Usuario usuario = new Usuario(nome, email, senha01, null);
-				Validacao validacao = new Validacao();
+				ValidacaoDeCadastroDeUsuario validacao = new ValidacaoDeCadastroDeUsuario();
 				
-			//	validacao.validarSenha(usuario);
-			//	validacao.validarEmail(usuario);
-			//	validacao.validarNome(usuario);
+				validacao.validarSenha(usuario);
+				validacao.validarEmail(usuario);
+				validacao.validarNome(usuario);
 
 				if (centralDeInformacoes.salvarUsuario(usuario)) {
 					
@@ -68,7 +68,7 @@ public class OuvinteTelaDeCadastroDeUsuario implements ActionListener {
 		} catch (NullPointerException erro) {
 			MensagemException.nullPointerException(erro);
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(telaDeCadastroDeUsuario, e1.getMessage());
-		}
+		    MensagemException.exception(e1);
+		} // end catch
 	} // end actionPerformed
 } // end class

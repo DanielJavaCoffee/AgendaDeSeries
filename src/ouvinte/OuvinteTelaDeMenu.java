@@ -3,11 +3,9 @@ package ouvinte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import entity.Usuario;
-import janelas.JanelaPadrao;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.MensagemException;
@@ -18,10 +16,10 @@ import tela.TelaCadastroDeProgramaDeRealityShows;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
 import tela.TelaDeCadastroDeCanal;
 import tela.TelaDeImagem;
-import tela.TelaListarTodosOsCanal;
 import tela.TelaDeMenu;
 import tela.TelaEnviarEmail;
 import tela.TelaGerarPDF;
+import tela.TelaListarTodosOsCanal;
 import tela.TelaListarTodosOsProgramas;
 
 public class OuvinteTelaDeMenu implements ActionListener {
@@ -70,8 +68,8 @@ public class OuvinteTelaDeMenu implements ActionListener {
 					
 		} else if (comando.equals("Listar Programas")) {
 			
-            new TelaListarTodosOsProgramas(null);
 			telaDeMenu.setVisible(false);
+			new TelaListarTodosOsProgramas(null);
 			
 		} else if (comando.equals("Gerar PDF")) {
 			

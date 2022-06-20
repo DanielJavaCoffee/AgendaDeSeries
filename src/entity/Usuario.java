@@ -8,9 +8,9 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private long id;
-	private ArrayList<ProgramaDeTV> minhaAgenda = new ArrayList<ProgramaDeTV>();
+	private ArrayList<Programa> minhaAgenda = new ArrayList<Programa>();
 
-	public Usuario(String nome, String email, String senha, ArrayList<ProgramaDeTV> agenda) {
+	public Usuario(String nome, String email, String senha, ArrayList<Programa> agenda) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
@@ -51,11 +51,11 @@ public class Usuario {
 		return id;
 	}
 
-	public ArrayList<ProgramaDeTV> getMinhaAgenda() {
+	public ArrayList<Programa> getMinhaAgenda() {
 		return minhaAgenda;
 	}
 
-	public void setMinhaAgenda(ArrayList<ProgramaDeTV> minhaAgenda) {
+	public void setMinhaAgenda(ArrayList<Programa> minhaAgenda) {
 		this.minhaAgenda = minhaAgenda;
 	}
 }

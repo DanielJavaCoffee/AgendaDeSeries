@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import entity.ProgramaDeTV;
+import entity.Programa;
 import model.CentralDeInformacoes;
 import model.Persistencia;
 import personalizedMessage.MensagemException;
@@ -38,7 +38,7 @@ public class OuvinteTelaAgendaDePrograma implements ActionListener {
 		try {
 
 			long id = Long.parseLong(JOptionPane.showInputDialog("Informe um id"));
-			ProgramaDeTV programa = centralDeInformacoes.recuperarAgenda(id);
+			Programa programa = centralDeInformacoes.recuperarAgenda(id);
 
 			if (programa != null) {
 				centralDeInformacoes.excluirAgenda(programa);
@@ -60,7 +60,7 @@ public class OuvinteTelaAgendaDePrograma implements ActionListener {
 			
 			long id = Long.parseLong(JOptionPane.showInputDialog("Informe o ID"));
 			
-			ProgramaDeTV programaDeTV = centralDeInformacoes.recuperarAgenda(id);
+			Programa programaDeTV = centralDeInformacoes.recuperarAgenda(id);
 			
 			if(programaDeTV != null) {
 				MensagemAgenda.detalhar(programaDeTV);

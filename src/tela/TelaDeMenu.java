@@ -3,6 +3,7 @@ package tela;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import applicationAgenda.EnviarEmailTarefa;
 import janelas.JanelaPadrao;
 import ouvinte.OuvinteTelaDeMenu;
 
@@ -25,6 +27,7 @@ public class TelaDeMenu extends JanelaPadrao {
 		adicionarTitulo();
 		excluirUsuario();
 		adicionarMenu();
+		tarefa();
 		setVisible(true);
 	}
 
@@ -35,6 +38,14 @@ public class TelaDeMenu extends JanelaPadrao {
 		jLabel.setBackground(Color.GRAY);
 		jLabel.setOpaque(true);
 		add(jLabel);
+	}
+	
+	public void tarefa() {
+		
+		Timer timer = new Timer();
+		EnviarEmailTarefa emailTarefa = new EnviarEmailTarefa();
+		timer.scheduleAtFixedRate(emailTarefa, 0, 100000);
+		System.out.println("TTT");
 	}
 
 	private void excluirUsuario() {

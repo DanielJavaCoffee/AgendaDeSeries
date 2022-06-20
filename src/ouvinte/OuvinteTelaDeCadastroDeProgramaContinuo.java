@@ -5,18 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import entity.Canal;
 import entity.ProgramaContinuo;
-import enuns.DiasDaSemanas;
 import enuns.StatusDeExebicao;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemCanal;
+import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemPrograma;
 import personalizedMessage.MensagemUsuario;
 import tela.TelaCadastroDeProgramaContinuo;
@@ -51,11 +51,9 @@ public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 			String nome = telaCadastroDePrograma.getCampoNomeDoPrograma().getText();
 			long id = Long.parseLong(telaCadastroDePrograma.getCampoIDCanal().getText());
 			String horario = telaCadastroDePrograma.getCampoHorario().getText();
-	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
-	        String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
-	        dia.toUpperCase();
-	        DiasDaSemanas dias = null;
-	        
+			String dia[] = telaCadastroDePrograma.getCampoDiasDaSemana().getText().split(", ");
+			String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
+
 			if (nome.isBlank() || horario.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {
@@ -81,13 +79,14 @@ public class OuvinteTelaDeCadastroDeProgramaContinuo implements ActionListener {
 						exebicao = StatusDeExebicao.CANCELADO;
 					} // end else
 
-					ProgramaContinuo programa = new ProgramaContinuo(nome, apresentador, exebicao, canal, null, horario, data);
+					ProgramaContinuo programa = new ProgramaContinuo(nome, apresentador, exebicao, canal, null,
+							horario, data);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
 					MensagemPrograma.programaSalvo();
 					new TelaCadastroDeProgramaSeriesRegulares(null);
 					telaCadastroDePrograma.setVisible(false);
-					
+
 				} else {
 					MensagemCanal.canalNaoEncontardo();
 				} // end else

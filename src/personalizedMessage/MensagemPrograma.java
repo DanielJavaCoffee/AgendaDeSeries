@@ -2,7 +2,7 @@ package personalizedMessage;
 
 import javax.swing.JOptionPane;
 
-import entity.ProgramaDeTV;
+import entity.Programa;
 
 public class MensagemPrograma {
 
@@ -18,7 +18,11 @@ public class MensagemPrograma {
 		JOptionPane.showMessageDialog(null, "Programa excluido com sucesso!");
 	}
 
-	public static void detalharPrograma(ProgramaDeTV programa) {
+	public static void detalharPrograma(Programa programa) {
 		JOptionPane.showMessageDialog(null, programa.toString());
+	}
+	
+	public static void programaAtualizado() {
+		JOptionPane.showMessageDialog(null, "Programa Atualizado com sucesso!");
 	}
 }

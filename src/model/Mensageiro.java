@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import personalizedMessage.MensagemEmail;
+
 public class Mensageiro {
 
     public static void enviarProgramacaoDeHoje(String assunto, String email, String texto)  {
@@ -24,7 +26,6 @@ public class Mensageiro {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.EnableSSL.enable","true");
-
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.setProperty("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.port", "465");
@@ -53,7 +54,8 @@ public class Mensageiro {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            System.out.print("Ocorreu um erro, tente novamente!");
+        	MensagemEmail.emailErro();
+            e.printStackTrace();
         }
     }
 }

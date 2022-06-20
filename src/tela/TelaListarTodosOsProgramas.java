@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ProgramaContinuo;
 import entity.ProgramaDeRealityShows;
-import entity.ProgramaDeTV;
+import entity.Programa;
 import entity.ProgramaSeriesRegulares;
 import enuns.EstiloSeriesRegulares;
 import janelas.JanelaListarProgramas;
@@ -157,13 +157,13 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 		modelo.addColumn("Estilo");
 		modelo.addColumn("ID");
 		
-		List<ProgramaDeTV> programa = centralDeInformacoes.getTodosOsProgramas();
+		List<Programa> programa = centralDeInformacoes.getTodosOsProgramas();
 
 		Collections.sort(programa);
 
 		Object[] linhas = new Object[programa.size()];
 
-		for (ProgramaDeTV p : programa) {
+		for (Programa p : programa) {
 
 			if (p instanceof ProgramaContinuo) {
 				ProgramaContinuo pc = (ProgramaContinuo) p;
@@ -174,7 +174,7 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 				linha[2] = pc.getNomeDosApresentadores();
 				linha[3] = pc.getStatusDeExebicao();
 				linha[4] = pc.getCanal();
-				linha[5] = pc.getDias();
+				linha[5] = pc.getDiasDaSemana();
 				linha[6] = pc.getHorario();
 				linha[7] = pc.getDataHiato();
 				linha[11] = pc.getId();
@@ -190,7 +190,7 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 				linha[1] = ps.getNome();
 				linha[3] = ps.getStatusDeExebicao();
 				linha[4] = ps.getCanal();
-				linha[5] = ps.getDias();
+				linha[5] = ps.getDiasDaSemana();
 				linha[6] = ps.getHorario();
 				linha[7] = ps.getDataHiato();
 				linha[8] = ps.getTemparada();
@@ -210,7 +210,7 @@ public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 				linha[1] = pr.getNome();
 				linha[3] = pr.getStatusDeExebicao();
 				linha[4] = pr.getCanal();
-				linha[5] = pr.getDias();
+				linha[5] = pr.getDiasDaSemana();
 				linha[6] = pr.getHorario();
 				linha[7] = pr.getDataHiato();
 				linha[8] = pr.getTemporada();

@@ -57,7 +57,7 @@ public class OuvinteTelaEditarCadastroDeCanal implements ActionListener {
 		
 		if (canal != null) {
 			canal.setNome(nome);
-			canal.setTipoDoCanal(exebicao.toString());
+			canal.setTipoDoCanal(exebicao);
 			canal.setLinkOuCanal(linkOuCanal);
 			persistencia.salvarCentral(centralDeInformacoes);
 			MensagemCanal.canalAtualizado();

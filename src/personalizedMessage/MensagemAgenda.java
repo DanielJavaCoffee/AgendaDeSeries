@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import entity.ProgramaDeTV;
+import entity.Programa;
 
 public class MensagemAgenda {
 	
@@ -20,13 +20,17 @@ public class MensagemAgenda {
 		JOptionPane.showMessageDialog(null, "programa não encontrado");
 	}
 	
-	public static void detalhar(ProgramaDeTV programaDeTV) {
+	public static void detalhar(Programa programaDeTV) {
 		JOptionPane.showMessageDialog(null, programaDeTV.toString());
 	}
 	
-	public static void hiatoHoje(Date date, ProgramaDeTV programaDeTV) {
+	public static void hiatoHoje(Date date, Programa programaDeTV) {
 		JOptionPane.showMessageDialog(null, "Existe um programa seu em Hiato " + date + " você pode mudar o status para em andamento. " 
 				+ programaDeTV);
+	}
+	
+	public static void programaJaExisteNaSuaAgenda() {
+		JOptionPane.showMessageDialog(null, "Esse Programa já existe na sua Agenda!");
 	}
 
 }

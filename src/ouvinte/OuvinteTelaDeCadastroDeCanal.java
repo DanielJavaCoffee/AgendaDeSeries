@@ -9,8 +9,9 @@ import entity.Canal;
 import enuns.TipoDeCanal;
 import model.CentralDeInformacoes;
 import model.Persistencia;
+import model.ValidacaoDeCadastroDeCanal;
 import personalizedMessage.MensagemCanal;
-import personalizedMessage.MensagemUsuario;
+import personalizedMessage.MensagemException;
 import tela.TelaDeCadastroDeCanal;
 import tela.TelaDeMenu;
 
@@ -42,8 +43,8 @@ public class OuvinteTelaDeCadastroDeCanal implements ActionListener {
 		String nome = telaDeCadastroDeCanal.getCampoNome().getText();
 		String canalOuLink = telaDeCadastroDeCanal.getCampoLinkNumero().getText();
 
-		
-		String[] status = { "canal aberto de televisão", "broadcasting aberto na internet", "pacote de assinatura", "assinatura individual de televisão", "assinatura individual de broadcasting" };
+		String[] status = { "canal aberto de televisão", "broadcasting aberto na internet", "pacote de assinatura",
+				"assinatura individual de televisão", "assinatura individual de broadcasting" };
 		String entradaStatus = (String) JOptionPane.showInputDialog(null, "Status De Exebição: ", "",
 				JOptionPane.WARNING_MESSAGE, null, status, status[0]);
 
@@ -55,22 +56,36 @@ public class OuvinteTelaDeCadastroDeCanal implements ActionListener {
 			exebicao = TipoDeCanal.BROADCASTING_ABERTO_NA_INTERNET;
 		} else if (status[2] == entradaStatus) {
 			exebicao = TipoDeCanal.PACOTE_DE_ASSINATURA;
-		} else if(status[3] == entradaStatus) {
+		} else if (status[3] == entradaStatus) {
 			exebicao = TipoDeCanal.ASSINATURA_INDIVIDUAL_DE_TELEVISAO;
-		}else {
-			exebicao = TipoDeCanal.ASSINATURA_INDIVIDUAL_DE_BROADCASTING;
-		} 
-		
-		if (nome.isBlank() || canalOuLink.isBlank()) {
-			MensagemUsuario.usuarioCampoVazio();
 		} else {
-			Canal canal = new Canal(nome, exebicao.toString(), canalOuLink);
+			exebicao = TipoDeCanal.ASSINATURA_INDIVIDUAL_DE_BROADCASTING;
+		} // end else
+
+		Canal canal = new Canal(nome, exebicao, canalOuLink);
+		ValidacaoDeCadastroDeCanal cadastroDeCanal = new ValidacaoDeCadastroDeCanal();
+		
+		try {
+
+			if (canal.getTipoDoCanal().equals(TipoDeCanal.ASSINATURA_INDIVIDUAL_DE_TELEVISAO)
+					|| canal.getTipoDoCanal().equals(TipoDeCanal.CANAL_ABERTO_DE_TELEVISAO)) {
+
+				cadastroDeCanal.testeCanal(canal);
+				
+			} else {
+				cadastroDeCanal.testeCanalLink(canal);
+			} // end else
+			
+			cadastroDeCanal.campoVazio(canal);
+
 			centralDeInformacoes.salvarCanal(canal);
 			persistencia.salvarCentral(centralDeInformacoes);
 			MensagemCanal.canalSalvo();
 			new TelaDeCadastroDeCanal(null);
 			telaDeCadastroDeCanal.setVisible(false);
-			
-		} // end else
+
+		} catch (Exception erro) {
+			MensagemException.exception(erro);
+		} // catch
 	} // end if
 } // end class

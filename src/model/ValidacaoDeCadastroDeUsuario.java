@@ -2,7 +2,7 @@ package model;
 
 import entity.Usuario;
 
-public class Validacao {
+public class ValidacaoDeCadastroDeUsuario {
 
 	public void validarEmail(Usuario usuario) throws Exception {
 
@@ -18,17 +18,16 @@ public class Validacao {
 	public void validarSenha(Usuario usuario) throws Exception {
 
 		if (!temLetraMaiuscula(usuario.getSenha())) {
-			throw new Exception("As senhas tem que ter uma caracter com letras Maiúsculas");
+			throw new Exception("As senhas tem que ter uma ou mais caracter com letras Maiúsculas");
 		}
 
 		if (!temLetraMinuscula(usuario.getSenha())) {
-			throw new Exception("As senhas tem que ter uma caracter com letras Minúsculas");
+			throw new Exception("As senhas tem que ter uma ou mais caracter com letras Minúsculas");
 		}
 
 		if (usuario.getSenha().contains(" ")) {
 			throw new Exception("Sua senha não pode ter espaço em branco.");
 		}
-		
 	}
 	
 	public void validarNome(Usuario usuario) throws Exception {
@@ -37,6 +36,16 @@ public class Validacao {
 			throw new Exception("Não é permitido nome de usuário com apenas número.");
 		}
 		
+	}
+	
+	public boolean isNumber(Usuario usuario) {
+
+		try {
+			Integer.parseInt(usuario.getNome());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public boolean temLetraMaiuscula(String senha) {
@@ -47,16 +56,6 @@ public class Validacao {
 			}
 		}
 		return false;
-	}
-
-	public boolean isNumber(Usuario usuario) {
-
-		try {
-			Integer.parseInt(usuario.getNome());
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
 	}
 
 	public boolean temLetraMinuscula(String senha) {

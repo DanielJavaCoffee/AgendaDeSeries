@@ -1,31 +1,26 @@
 package entity;
 
+import java.time.DayOfWeek;
 import java.util.Date;
-import java.util.List;
 
-import enuns.DiasDaSemanas;
 import enuns.EstiloSeriesRegulares;
 import enuns.StatusDeExebicao;
 import enuns.TipoDePrograma;
 
-public class ProgramaSeriesRegulares extends ProgramaDeTV {
+public class ProgramaSeriesRegulares extends Programa {
 
 	private String genero;
 	private EstiloSeriesRegulares estilo;
 	private String temparada;
 
-	public ProgramaSeriesRegulares() {
-
-	}
-
-	public ProgramaSeriesRegulares(String nome, StatusDeExebicao exebicao, Canal canal, List<DiasDaSemanas> dias,
+	public ProgramaSeriesRegulares(String nome, StatusDeExebicao exebicao, Canal canal, DayOfWeek[] dias,
 			String horario, Date data, String temporada, String genero, EstiloSeriesRegulares estilo) {
 
 		this.setTipoDePrograma(TipoDePrograma.SERIES_REGULARES);
 		this.setNome(nome);
 		this.setStatusDeExebicao(exebicao);
 		this.setCanal(canal);
-		this.setDias(dias);
+		this.setDiasDaSemana(dias);
 		this.setHorario(horario);
 		this.setDataHiato(data);
 		this.temparada = temporada;
@@ -38,7 +33,7 @@ public class ProgramaSeriesRegulares extends ProgramaDeTV {
 	public String toString() {
 		return "Tipo De Programa: " + this.getTipoDePrograma() + "\n" + "Nome Do Programa: " + this.getNome() + "\n"
 				+ "Status De Exebição: " + this.getStatusDeExebicao() + "\n" + "Canal: " + this.getCanal() + "\n"
-				+ "Dias Da Semana: " + this.getDias() + "\n" + "Horario: " + this.getHorario() + "\n" + "Data: "
+				+ "Dias Da Semana: " + this.getDiasDaSemana() + "\n" + "Horario: " + this.getHorario() + "\n" + "Data: "
 				+ this.getDataHiato() + "\n" + "Temporada: " + this.getTemparada() + "\n" + "Genero: "
 				+ this.getGenero() + "\n" + "Estilo: " + this.getEstilo() + "\n" + "ID: " + this.getId();
 	}
@@ -67,7 +62,7 @@ public class ProgramaSeriesRegulares extends ProgramaDeTV {
 		this.temparada = temparada;
 	}
 
-	public int compareTo(ProgramaDeTV o) {
+	public int compareTo(Programa o) {
 		return 0;
 	}
 }

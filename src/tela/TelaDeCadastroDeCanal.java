@@ -19,7 +19,6 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 	OuvinteTelaDeCadastroDeCanal ouvinte = new OuvinteTelaDeCadastroDeCanal(this);
 
 	private JTextField campoNome;
-//	private JFormattedTextField campoForma;
 	private JTextField campoLinkNumero;
 	private JButton buttonVoltar;
 	private JButton buttonSalvar;
@@ -54,7 +53,7 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 		add(tipoDoCanal);
     */
 		JLabel formarDeAssistir = new JLabel("Link Ou Número Do Canal: ");
-		formarDeAssistir.setBounds(30, 180, 150, 30);
+		formarDeAssistir.setBounds(30, 180, 170, 30);
 		add(formarDeAssistir);
 
 	}
@@ -65,14 +64,6 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 		campoNome.setBounds(200, 100, 200, 30);
 		add(campoNome);
 
-		/*
-		 * try { campoForma = new JFormattedTextField(new
-		 * MaskFormatter(" (1) canal aberto de televisão, (2) broadcasting aberto na interne,"
-		 * +
-		 * " (3) pacote de assinatura, (4) assinatura individual de televisão, (5) assinatura individual de broadcasting"
-		 * )); } catch (ParseException e) { e.printStackTrace(); }
-		 * campoForma.setBounds(200, 140, 200, 30); add(campoForma);
-		 */
 		campoLinkNumero = new JFormattedTextField();
 		campoLinkNumero.setBounds(200, 180, 200, 30);
 		add(campoLinkNumero);
@@ -116,11 +107,6 @@ public class TelaDeCadastroDeCanal extends JanelaPadrao {
 	public JTextField getCampoNome() {
 		return campoNome;
 	}
-
-	/*public JFormattedTextField getCampoForma() {
-		return campoForma;
-	}
-	*/
 
 	public JTextField getCampoLinkNumero() {
 		return campoLinkNumero;

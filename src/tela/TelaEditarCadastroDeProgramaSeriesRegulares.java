@@ -13,38 +13,35 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Caret;
 import javax.swing.text.MaskFormatter;
 
 import entity.Canal;
-import entity.ProgramaContinuo;
-import entity.Programa;
+import entity.ProgramaSeriesRegulares;
 import janelas.JanelaTelaCadastroDePrograma;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import ouvinte.OuvinteTelaDeCadastroDeProgramaContinuo;
-import ouvinte.OuvinteTelaEditarProgramaContinuo;
+import ouvinte.OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares;
 
-public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
+public class TelaEditarCadastroDeProgramaSeriesRegulares extends JanelaTelaCadastroDePrograma {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	OuvinteTelaEditarProgramaContinuo ouvinte = new OuvinteTelaEditarProgramaContinuo(this);
+	OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares ouvinte = new OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares(this);
 
 	private JTextField campoNomeDoPrograma;
 	private JTextField campoIDCanal;
 	private JTextField campoDiasDaSemana;
-	private JTextField campoApresentador;
+	private JTextField campoGenero;
+	private JTextField campoTemporada;
+    private JTextField campoID;
 	private JFormattedTextField campoHorario;
-	private JTextField campoID;
 	private JButton buttonVoltar;
 	private JButton buttonSalvar;
-	private ProgramaContinuo programaContinuo;
-	
+	private ProgramaSeriesRegulares programaSeriesRegulares;
 
-	public TelaEditarProgramaContinuo(String titulo, ProgramaContinuo programaContinuo) {
+	public TelaEditarCadastroDeProgramaSeriesRegulares(String titulo, ProgramaSeriesRegulares programaSeriesRegulares) {
 		super(titulo);
-		this.programaContinuo = programaContinuo;
+		this.programaSeriesRegulares = programaSeriesRegulares;
 		adicionarTitulo();
 		listarPrograma();
 		adicionarJLabel();
@@ -109,30 +106,34 @@ public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 		JLabel horario = new JLabel("Horario Do Programa: ");
 		horario.setBounds(40, 450, 130, 30);
 		add(horario);
-
-		JLabel apresentador = new JLabel("Nome Do/s Apresentado/res: ");
-		apresentador.setBounds(40, 500, 130, 30);
-		add(apresentador);
-
+		
+		JLabel genero = new JLabel("Genero Do Programa: ");
+		genero.setBounds(40, 500, 130, 30);
+		add(genero);
+		
+		JLabel temporada = new JLabel("Temporada: ");
+		temporada.setBounds(40, 550, 130, 30);
+		add(temporada);
+		
 	}
 
 	private void adicionarJTextFild() {
-		
+
 		campoNomeDoPrograma = new JTextField();
 		campoNomeDoPrograma.setBounds(200, 300, 200, 30);
-		campoNomeDoPrograma.setText(this.programaContinuo.getNome());
+		campoNomeDoPrograma.setText(this.programaSeriesRegulares.getNome());
 		add(campoNomeDoPrograma);
 
 		campoIDCanal = new JTextField();
 		campoIDCanal.setBounds(200, 350, 200, 30);
-		campoIDCanal.setText(String.valueOf(this.programaContinuo.getCanal().getId()));
+		campoIDCanal.setText(String.valueOf(this.programaSeriesRegulares.getCanal().getId()));
 		add(campoIDCanal);
 
 		campoDiasDaSemana = new JTextField();
 		campoDiasDaSemana.setBounds(200, 400, 200, 30);
-	//	campoDiasDaSemana.setText(this.programaContinuo.getDias().toString());
+		campoDiasDaSemana.setText(String.valueOf(this.programaSeriesRegulares.getDiasDaSemana()));
 		add(campoDiasDaSemana);
-
+		
 		try {
 			campoHorario = new JFormattedTextField(new MaskFormatter("##:##"));
 
@@ -140,16 +141,22 @@ public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 			e.printStackTrace();
 		}
 		campoHorario.setBounds(200, 450, 70, 30);
-		campoHorario.setText(this.programaContinuo.getHorario());
+		campoHorario.setText(String.valueOf(this.programaSeriesRegulares.getHorario()));
 		add(campoHorario);
-
-		campoApresentador = new JTextField();
-		campoApresentador.setBounds(200, 500, 200, 30);
-		campoApresentador.setText(this.programaContinuo.getNomeDosApresentadores());
-		add(campoApresentador);
+		
+		campoGenero = new JTextField();
+		campoGenero.setBounds(200, 500, 200, 30);
+		campoGenero.setText(this.programaSeriesRegulares.getGenero());
+		add(campoGenero);
+		
+		campoTemporada = new JTextField();
+		campoTemporada.setBounds(200, 550, 200, 30);
+		campoTemporada.setText(this.programaSeriesRegulares.getTemparada());
+		add(campoTemporada);
 		
 		campoID = new JTextField();
-		campoID.setText(String.valueOf(this.programaContinuo.getId()));
+		campoID.setText(String.valueOf(this.programaSeriesRegulares.getId()));
+		
 	}
 
 	private void adicionarButtonVoltar() {
@@ -176,6 +183,7 @@ public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 		buttonSalvar.addActionListener(salvar());
 		add(buttonSalvar);
 	}
+	
 
 	public ActionListener salvar() {
 		return new ActionListener() {
@@ -193,6 +201,7 @@ public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 		return campoIDCanal;
 	}
 
+
 	public JTextField getCampoDiasDaSemana() {
 		return campoDiasDaSemana;
 	}
@@ -209,20 +218,21 @@ public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 		return buttonSalvar;
 	}
 
-	public JTextField getCampoApresentador() {
-		return campoApresentador;
+	public JTextField getCampoGenero() {
+		return campoGenero;
 	}
 
-	public ProgramaContinuo getProgramaDeTV() {
-		return programaContinuo;
+	public JTextField getCampoTemporada() {
+		return campoTemporada;
 	}
 
-	public void setProgramaContinuo(ProgramaContinuo programaContinuo) {
-		this.programaContinuo = programaContinuo;
+	public ProgramaSeriesRegulares getProgramaSeriesRegulares() {
+		return programaSeriesRegulares;
 	}
 
 	public JTextField getCampoID() {
 		return campoID;
 	}
-
+	
+	
 }

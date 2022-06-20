@@ -11,13 +11,12 @@ import javax.swing.JOptionPane;
 
 import entity.Canal;
 import entity.ProgramaSeriesRegulares;
-import enuns.DiasDaSemanas;
 import enuns.EstiloSeriesRegulares;
 import enuns.StatusDeExebicao;
 import model.CentralDeInformacoes;
 import model.Persistencia;
-import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemCanal;
+import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemPrograma;
 import personalizedMessage.MensagemUsuario;
 import tela.TelaCadastroDeProgramaSeriesRegulares;
@@ -55,9 +54,7 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
 	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
 	        dia.toUpperCase();
-	        DiasDaSemanas dias = null;
-	        
-	        
+
 			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {

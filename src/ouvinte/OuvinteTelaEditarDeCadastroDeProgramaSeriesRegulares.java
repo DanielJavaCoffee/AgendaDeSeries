@@ -10,7 +10,8 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import entity.Canal;
-import entity.ProgramaDeRealityShows;
+import entity.ProgramaSeriesRegulares;
+import enuns.EstiloSeriesRegulares;
 import enuns.StatusDeExebicao;
 import model.CentralDeInformacoes;
 import model.Persistencia;
@@ -18,26 +19,25 @@ import personalizedMessage.MensagemCanal;
 import personalizedMessage.MensagemException;
 import personalizedMessage.MensagemPrograma;
 import personalizedMessage.MensagemUsuario;
-import tela.TelaCadastroDeProgramaDeRealityShows;
-import tela.TelaCadastroDeProgramaSeriesRegulares;
-import tela.TelaDeMenu;
+import tela.TelaEditarCadastroDeProgramaSeriesRegulares;
+import tela.TelaListarTodosOsProgramas;
 
-public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionListener {
+public class OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares implements ActionListener {
 
 	Persistencia persistencia = new Persistencia();
 	CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
-	private TelaCadastroDeProgramaDeRealityShows telaCadastroDePrograma;
+	private TelaEditarCadastroDeProgramaSeriesRegulares telaCadastroDePrograma;
 
-	public TelaCadastroDeProgramaDeRealityShows getTelaCadastroDePrograma() {
+	public TelaEditarCadastroDeProgramaSeriesRegulares getTelaCadastroDePrograma() {
 		return telaCadastroDePrograma;
 	}
 
-	public OuvinteTelaDeCadastroDeProgramaDeRealityShows(TelaCadastroDeProgramaDeRealityShows tela) {
+	public OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares(TelaEditarCadastroDeProgramaSeriesRegulares tela) {
 		this.telaCadastroDePrograma = tela;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		new TelaDeMenu(null);
+		new TelaListarTodosOsProgramas(null);
 		telaCadastroDePrograma.setVisible(false);
 	} // end action
 
@@ -50,16 +50,30 @@ public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionList
 			String nome = telaCadastroDePrograma.getCampoNomeDoPrograma().getText();
 			long id = Long.parseLong(telaCadastroDePrograma.getCampoIDCanal().getText());
 			String horario = telaCadastroDePrograma.getCampoHorario().getText();
-			String apresentador = telaCadastroDePrograma.getCampoApresentador().getText();
+			String genero = telaCadastroDePrograma.getCampoGenero().getText();
 			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
+			String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
+			long idPrograma = Long.parseLong(telaCadastroDePrograma.getCampoID().getText());
+			dia.toUpperCase();
 
-			if (nome.isBlank() || horario.isBlank() || apresentador.isBlank() || temporada.isBlank()) {
+			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {
 
 				Canal canal = centralDeInformacoes.recuperarCanalId(id);
 
 				if (canal != null) {
+
+					String[] opercao = { "Live Action", "Animada" };
+					String entrada = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
+							JOptionPane.WARNING_MESSAGE, null, opercao, opercao[0]);
+					EstiloSeriesRegulares estilo = null;
+
+					if (opercao[0] == entrada) {
+						estilo = EstiloSeriesRegulares.LIVI_ACTION;
+					} else {
+						estilo = EstiloSeriesRegulares.ANIMADA;
+					} // end else
 
 					String[] status = { "Exibição", "Hiato", "Finalizado", "Cancelado" };
 					String entradaStatus = (String) JOptionPane.showInputDialog(null, "Estilo Dá Séries: ", "",
@@ -72,19 +86,34 @@ public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionList
 					} else if (status[1] == entradaStatus) {
 						exebicao = StatusDeExebicao.HIATO;
 						data = formatar.parse(JOptionPane.showInputDialog("Data de exebição: Separe por barras /. "));
-
 					} else if (status[2] == entradaStatus) {
 						exebicao = StatusDeExebicao.FINALIZADO;
 					} else {
 						exebicao = StatusDeExebicao.CANCELADO;
-					} // end else
-					ProgramaDeRealityShows programa = new ProgramaDeRealityShows(nome, apresentador, exebicao, canal,
-							null, horario, data, temporada);
-					centralDeInformacoes.adicionarProgramaDeTV(programa);
-					persistencia.salvarCentral(centralDeInformacoes);
-					MensagemPrograma.programaSalvo();
-					new TelaCadastroDeProgramaSeriesRegulares(null);
-					telaCadastroDePrograma.setVisible(false);
+					}
+
+					ProgramaSeriesRegulares programa = (ProgramaSeriesRegulares) centralDeInformacoes
+							.recuperarProgramaDeTVporId(idPrograma);
+
+					if (programa instanceof ProgramaSeriesRegulares) {
+						ProgramaSeriesRegulares ps = (ProgramaSeriesRegulares) programa;
+
+						ps.setNome(nome);
+						ps.setStatusDeExebicao(exebicao);
+						ps.setCanal(canal);
+						ps.setDiasDaSemana(null);
+						ps.setHorario(horario);
+						ps.setDataHiato(data);
+						ps.setTemparada(temporada);
+						ps.setGenero(genero);
+						ps.setEstilo(estilo);
+
+						centralDeInformacoes.adicionarProgramaDeTV(programa);
+						persistencia.salvarCentral(centralDeInformacoes);
+						MensagemPrograma.programaSalvo();
+						new TelaListarTodosOsProgramas(null);
+						telaCadastroDePrograma.setVisible(false);
+					}
 				} else {
 					MensagemCanal.canalNaoEncontardo();
 				} // end else
@@ -94,7 +123,9 @@ public class OuvinteTelaDeCadastroDeProgramaDeRealityShows implements ActionList
 		} catch (HeadlessException e1) {
 			e1.printStackTrace();
 		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // end catch
 	} // end action
-} // end class
+}
+// end class

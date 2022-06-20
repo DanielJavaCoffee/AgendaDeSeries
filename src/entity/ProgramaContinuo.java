@@ -1,13 +1,12 @@
 package entity;
 
+import java.time.DayOfWeek;
 import java.util.Date;
-import java.util.List;
 
-import enuns.DiasDaSemanas;
 import enuns.StatusDeExebicao;
 import enuns.TipoDePrograma;
 
-public class ProgramaContinuo extends ProgramaDeTV{
+public class ProgramaContinuo extends Programa{
 
 	private String nomeDosApresentadoroes;
 	
@@ -16,14 +15,14 @@ public class ProgramaContinuo extends ProgramaDeTV{
 	}
 	
 	public ProgramaContinuo(String nome, String nomeApresentador, StatusDeExebicao status, Canal canal, 
-			List<DiasDaSemanas> dias, String horario, Date data) {
+			DayOfWeek[] dias, String horario, Date data) {
 		
 		this.setTipoDePrograma(TipoDePrograma.PROGRAMAS_CONTINUOS);
 		this.setNome(nome);
 		this.nomeDosApresentadoroes = nomeApresentador;
 		this.setStatusDeExebicao(status);
 		this.setCanal(canal);
-		this.setDias(dias);
+		this.setDiasDaSemana(dias);
 		this.setHorario(horario);
 		this.setDataHiato(data);
 		this.setId(System.currentTimeMillis());
@@ -32,7 +31,7 @@ public class ProgramaContinuo extends ProgramaDeTV{
 	public String toString() {
 		return "Tipo De Programa: " + this.getTipoDePrograma() + "\n" + 
 	      "Nome Do Programa: " + this.getNome() + "\n" + "Apresentador: " + this.nomeDosApresentadoroes + 
-	      "\n" +"Status De Exebição: " + this.getStatusDeExebicao() + "\n" + "Canal: " + this.getCanal() + "\n" + "Dia/s Da Semana/s: " + this.getDias() + "\n" +
+	      "\n" +"Status De Exebição: " + this.getStatusDeExebicao() + "\n" + "Canal: " + this.getCanal() + "\n" + "Dia/s Da Semana/s: " + this.getDiasDaSemana() + "\n" +
 	      "Data :" + this.getDataHiato() + "\n" + "ID: " + this.getId();
 	}
 
@@ -45,7 +44,7 @@ public class ProgramaContinuo extends ProgramaDeTV{
 	}
 
 	@Override
-	public int compareTo(ProgramaDeTV o) {
+	public int compareTo(Programa o) {
 
 		return 0;
 	}

@@ -1,25 +1,23 @@
 package entity;
 
+import enuns.TipoDeCanal;
+
 public class Canal implements Comparable<Canal> {
 
 	private String nome;
-	private String tipoDoCanal;
+	private TipoDeCanal tipoDoCanal;
 	private String linkOuCanal;
 	private long id;
 
-	public Canal() {
-
-	}
-
-	public Canal(String nome, String tipoDoCanal, String linkOuCanal) {
+	public Canal(String nome, TipoDeCanal tipoDoCanal, String canalOuLink) {
 		this.nome = nome;
 		this.tipoDoCanal = tipoDoCanal;
-		this.linkOuCanal = linkOuCanal;
+		this.linkOuCanal = canalOuLink;
 		this.id = System.currentTimeMillis();
 	}
 
 	public String toString() {
-		return "Nome Do Canal: " + this.nome + "\n" + "Tipo Do Canal: " + this.tipoDoCanal + "\n"
+		return "Canal: " + this.nome + "\n" + "Tipo Do Canal: " + this.tipoDoCanal + "\n"
 				+ "Link Ou Numero Do Canal: " + this.linkOuCanal + "\n" + "ID: " + this.id;
 	}
 
@@ -38,11 +36,11 @@ public class Canal implements Comparable<Canal> {
 		this.nome = nome;
 	}
 
-	public String getTipoDoCanal() {
+	public TipoDeCanal getTipoDoCanal() {
 		return tipoDoCanal;
 	}
 
-	public void setTipoDoCanal(String tipoDoCanal) {
+	public void setTipoDoCanal(TipoDeCanal tipoDoCanal) {
 		this.tipoDoCanal = tipoDoCanal;
 	}
 
@@ -59,8 +57,7 @@ public class Canal implements Comparable<Canal> {
 	}
 
 	@Override
-	public int compareTo(Canal o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Canal canal) {
+		return nome.compareTo(canal.getNome());
 	}
 }
