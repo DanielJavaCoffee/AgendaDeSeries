@@ -21,6 +21,9 @@ public class Main {
 		 * Enuns.DayOfWeek dayOfWeekE = Enuns.DayOfWeek.valueOf(dia.toUpperCase());
 		 * System.out.println(dayOfWeekE); leitor.close();
 		 */
+		
+		String a = null;
+		
 		Persistencia persistencia = new Persistencia();
 		CentralDeInformacoes centralDeInformacoes = persistencia.recuperarCentral();
 
