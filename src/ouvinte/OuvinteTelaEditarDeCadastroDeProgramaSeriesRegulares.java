@@ -1,26 +1,27 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import Enuns.EstiloSeriesRegulares;
+import Enuns.StatusDeExebicao;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemCanal;
+import PersonalizedMessage.MensagemException;
+import PersonalizedMessage.MensagemPrograma;
+import PersonalizedMessage.MensagemUsuario;
+import Tela.TelaEditarCadastroDeProgramaSeriesRegulares;
+import Tela.TelaListarTodosOsProgramas;
 import entity.Canal;
 import entity.ProgramaSeriesRegulares;
-import enuns.EstiloSeriesRegulares;
-import enuns.StatusDeExebicao;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemCanal;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemPrograma;
-import personalizedMessage.MensagemUsuario;
-import tela.TelaEditarCadastroDeProgramaSeriesRegulares;
-import tela.TelaListarTodosOsProgramas;
 
 public class OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares implements ActionListener {
 
@@ -55,6 +56,7 @@ public class OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares implements Act
 			String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
 			long idPrograma = Long.parseLong(telaCadastroDePrograma.getCampoID().getText());
 			dia.toUpperCase();
+			DayOfWeek dayOfWeek = DayOfWeek.valueOf(dia);
 
 			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
@@ -101,7 +103,7 @@ public class OuvinteTelaEditarDeCadastroDeProgramaSeriesRegulares implements Act
 						ps.setNome(nome);
 						ps.setStatusDeExebicao(exebicao);
 						ps.setCanal(canal);
-						ps.setDiasDaSemana(null);
+					//	ps.setDiasDaSemana(dayOfWeek);
 						ps.setHorario(horario);
 						ps.setDataHiato(data);
 						ps.setTemparada(temporada);

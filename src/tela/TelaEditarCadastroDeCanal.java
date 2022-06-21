@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaEditarCadastroDeCanal;
 import entity.Canal;
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaEditarCadastroDeCanal;
 
 public class TelaEditarCadastroDeCanal extends JanelaPadrao {
 

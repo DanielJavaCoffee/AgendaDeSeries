@@ -1,26 +1,26 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemException;
+import PersonalizedMessage.MensagemUsuario;
+import Tela.TelaAgendaDePrograma;
+import Tela.TelaCadastroDeProgramaContinuo;
+import Tela.TelaCadastroDeProgramaDeRealityShows;
+import Tela.TelaCadastroDeProgramaSeriesRegulares;
+import Tela.TelaDeCadastroDeCanal;
+import Tela.TelaDeImagem;
+import Tela.TelaDeMenu;
+import Tela.TelaEnviarEmail;
+import Tela.TelaGerarPDF;
+import Tela.TelaListarTodosOsCanal;
+import Tela.TelaListarTodosOsProgramas;
 import entity.Usuario;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemUsuario;
-import tela.TelaAgendaDePrograma;
-import tela.TelaCadastroDeProgramaContinuo;
-import tela.TelaCadastroDeProgramaDeRealityShows;
-import tela.TelaCadastroDeProgramaSeriesRegulares;
-import tela.TelaDeCadastroDeCanal;
-import tela.TelaDeImagem;
-import tela.TelaDeMenu;
-import tela.TelaEnviarEmail;
-import tela.TelaGerarPDF;
-import tela.TelaListarTodosOsCanal;
-import tela.TelaListarTodosOsProgramas;
 
 public class OuvinteTelaDeMenu implements ActionListener {
 

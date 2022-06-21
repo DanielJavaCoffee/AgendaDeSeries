@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Caret;
 import javax.swing.text.MaskFormatter;
 
+import Janelas.JanelaTelaCadastroDePrograma;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import Ouvinte.OuvinteTelaDeCadastroDeProgramaContinuo;
+import Ouvinte.OuvinteTelaEditarProgramaContinuo;
 import entity.Canal;
 import entity.ProgramaContinuo;
 import entity.Programa;
-import janelas.JanelaTelaCadastroDePrograma;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import ouvinte.OuvinteTelaDeCadastroDeProgramaContinuo;
-import ouvinte.OuvinteTelaEditarProgramaContinuo;
 
 public class TelaEditarProgramaContinuo extends JanelaTelaCadastroDePrograma {
 

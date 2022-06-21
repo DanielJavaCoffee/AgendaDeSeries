@@ -1,19 +1,19 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Model.CentralDeInformacoes;
+import Model.Mensageiro;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemEmail;
+import PersonalizedMessage.MensagemException;
+import PersonalizedMessage.MensagemUsuario;
+import Tela.TelaDeLogin;
+import Tela.TelaDeMenu;
 import entity.Usuario;
-import model.CentralDeInformacoes;
-import model.Mensageiro;
-import model.Persistencia;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemEmail;
-import personalizedMessage.MensagemUsuario;
-import tela.TelaDeLogin;
-import tela.TelaDeMenu;
 
 public class OuvinteTelaDeLogin implements ActionListener {
 

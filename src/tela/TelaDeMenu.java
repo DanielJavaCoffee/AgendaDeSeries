@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -11,9 +11,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import applicationAgenda.EnviarEmailTarefa;
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaDeMenu;
+import ApplicationAgenda.EnviarEmailTarefa;
+import ApplicationAgenda.Hiato;
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaDeMenu;
 
 public class TelaDeMenu extends JanelaPadrao {
 
@@ -46,6 +47,10 @@ public class TelaDeMenu extends JanelaPadrao {
 		EnviarEmailTarefa emailTarefa = new EnviarEmailTarefa();
 		timer.scheduleAtFixedRate(emailTarefa, 0, 100000);
 		System.out.println("TTT");
+		
+		Hiato hiato = new Hiato();
+		Thread thread = new Thread(hiato);
+		thread.start();
 	}
 
 	private void excluirUsuario() {

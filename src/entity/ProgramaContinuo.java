@@ -3,8 +3,8 @@ package entity;
 import java.time.DayOfWeek;
 import java.util.Date;
 
-import enuns.StatusDeExebicao;
-import enuns.TipoDePrograma;
+import Enuns.StatusDeExebicao;
+import Enuns.TipoDePrograma;
 
 public class ProgramaContinuo extends Programa{
 

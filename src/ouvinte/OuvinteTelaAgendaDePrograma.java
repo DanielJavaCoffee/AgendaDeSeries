@@ -1,17 +1,17 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemAgenda;
+import PersonalizedMessage.MensagemException;
+import Tela.TelaAgendaDePrograma;
+import Tela.TelaDeMenu;
 import entity.Programa;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemAgenda;
-import tela.TelaAgendaDePrograma;
-import tela.TelaDeMenu;
 
 public class OuvinteTelaAgendaDePrograma implements ActionListener {
 

@@ -1,26 +1,27 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import Enuns.EstiloSeriesRegulares;
+import Enuns.StatusDeExebicao;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemCanal;
+import PersonalizedMessage.MensagemException;
+import PersonalizedMessage.MensagemPrograma;
+import PersonalizedMessage.MensagemUsuario;
+import Tela.TelaCadastroDeProgramaSeriesRegulares;
+import Tela.TelaDeMenu;
 import entity.Canal;
 import entity.ProgramaSeriesRegulares;
-import enuns.EstiloSeriesRegulares;
-import enuns.StatusDeExebicao;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemCanal;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemPrograma;
-import personalizedMessage.MensagemUsuario;
-import tela.TelaCadastroDeProgramaSeriesRegulares;
-import tela.TelaDeMenu;
 
 public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionListener {
 
@@ -41,6 +42,7 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 		telaCadastroDePrograma.setVisible(false);
 	} // end action
 
+	@SuppressWarnings("static-access")
 	public void actionPerformedSalvar(ActionEvent e) {
 
 		try {
@@ -52,9 +54,16 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 			String horario = telaCadastroDePrograma.getCampoHorario().getText();
 			String genero = telaCadastroDePrograma.getCampoGenero().getText();
 			String temporada = telaCadastroDePrograma.getCampoTemporada().getText();
-	        String dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText();
-	        dia.toUpperCase();
-
+	        String[] dia = telaCadastroDePrograma.getCampoDiasDaSemana().getText().split(", ");
+	    //  DayOfWeek dayOfWeek = DayOfWeek.valueOf(dia.toUpperCase());
+	        
+	        DayOfWeek[] dayOfWeeks = new DayOfWeek[dia.length];
+	        DayOfWeek[] dayOfWeeksFinal = new DayOfWeek[dia.length];
+	        for(int i = 0; i < dia.length; i++) {
+	        	dayOfWeeksFinal[i] = dayOfWeeks[i].valueOf(dia[i].toUpperCase());
+	        	System.out.println(dayOfWeeksFinal[i].toString());
+	        }
+	        
 			if (nome.isBlank() || horario.isBlank() || genero.isBlank() || temporada.isBlank()) {
 				MensagemUsuario.usuarioCampoVazio();
 			} else {
@@ -91,7 +100,7 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 						exebicao = StatusDeExebicao.CANCELADO;
 					}
 
-					ProgramaSeriesRegulares programa = new ProgramaSeriesRegulares(nome, exebicao, canal, null, horario, data, temporada, genero, estilo);
+					ProgramaSeriesRegulares programa = new ProgramaSeriesRegulares(nome, exebicao, canal, dayOfWeeksFinal, horario, data, temporada, genero, estilo);
 					centralDeInformacoes.adicionarProgramaDeTV(programa);
 					persistencia.salvarCentral(centralDeInformacoes);
 					MensagemPrograma.programaSalvo();
@@ -106,7 +115,6 @@ public class OuvinteTelaDeCadastroDeProgramaSeriesRegulares implements ActionLis
 		} catch (HeadlessException e1) {
 			e1.printStackTrace();
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // end catch
 	} // end action

@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaDeCadastroDeUsuario;
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaDeCadastroDeUsuario;
 
 
 public class TelaDeCadastroDeUsuario extends JanelaPadrao {

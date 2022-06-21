@@ -1,4 +1,4 @@
-package personalizedMessage;
+package PersonalizedMessage;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaDeCadastroDeCanal;
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaDeCadastroDeCanal;
 
 public class TelaDeCadastroDeCanal extends JanelaPadrao {
 

@@ -1,6 +1,6 @@
 package entity;
 
-import enuns.TipoDeCanal;
+import Enuns.TipoDeCanal;
 
 public class Canal implements Comparable<Canal> {
 

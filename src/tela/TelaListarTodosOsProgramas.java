@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -13,15 +13,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Enuns.EstiloSeriesRegulares;
+import Janelas.JanelaListarProgramas;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import Ouvinte.OuvinteTelaListarTodosOsProgramas;
 import entity.ProgramaContinuo;
 import entity.ProgramaDeRealityShows;
 import entity.Programa;
 import entity.ProgramaSeriesRegulares;
-import enuns.EstiloSeriesRegulares;
-import janelas.JanelaListarProgramas;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import ouvinte.OuvinteTelaListarTodosOsProgramas;
 
 public class TelaListarTodosOsProgramas extends JanelaListarProgramas {
 

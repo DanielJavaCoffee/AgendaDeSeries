@@ -1,4 +1,4 @@
-package janelas;
+package Janelas;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;

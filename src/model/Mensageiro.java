@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 import java.util.Properties;
 
@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import personalizedMessage.MensagemEmail;
+import PersonalizedMessage.MensagemEmail;
 
 public class Mensageiro {
 

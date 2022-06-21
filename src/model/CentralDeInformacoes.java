@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +42,12 @@ public class CentralDeInformacoes {
 		return false;
 	}
 
-	public boolean salvarCanal(Canal canal) {
+	public void salvarCanal(Canal canal) throws Exception {
 		Canal canalNome = this.recuperarCanal(canal.getNome());
 		if (canalNome != null) {
-			return false;
+			throw new Exception("Já Existe Um Canal Com Este Nome!");
 		}
 		todosOsCanais.add(canal);
-		return true;
 	}
 
 	public Canal recuperarCanal(String nome) {

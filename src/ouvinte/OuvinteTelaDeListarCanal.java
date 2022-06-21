@@ -1,17 +1,17 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemCanal;
+import PersonalizedMessage.MensagemException;
+import Tela.TelaDeMenu;
+import Tela.TelaListarTodosOsCanal;
 import entity.Canal;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemCanal;
-import tela.TelaListarTodosOsCanal;
-import tela.TelaDeMenu;
 
 public class OuvinteTelaDeListarCanal implements ActionListener {
 
@@ -55,7 +55,7 @@ public class OuvinteTelaDeListarCanal implements ActionListener {
 		String nome = JOptionPane.showInputDialog("Informe o nome do Canal: ");
 		Canal canal = centralDeInformacoes.recuperarCanal(nome);
 		if (canal != null) {
-			new tela.TelaEditarCadastroDeCanal(null, canal);
+			new Tela.TelaEditarCadastroDeCanal(null, canal);
 			telaDeListarCanal.setVisible(false);
 		} else {
 			MensagemCanal.canalNaoEncontardo();

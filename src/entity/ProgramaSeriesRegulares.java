@@ -3,9 +3,9 @@ package entity;
 import java.time.DayOfWeek;
 import java.util.Date;
 
-import enuns.EstiloSeriesRegulares;
-import enuns.StatusDeExebicao;
-import enuns.TipoDePrograma;
+import Enuns.EstiloSeriesRegulares;
+import Enuns.StatusDeExebicao;
+import Enuns.TipoDePrograma;
 
 public class ProgramaSeriesRegulares extends Programa {
 

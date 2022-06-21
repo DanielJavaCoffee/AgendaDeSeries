@@ -1,25 +1,25 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Enuns.TipoDePrograma;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemAgenda;
+import PersonalizedMessage.MensagemException;
+import PersonalizedMessage.MensagemPrograma;
+import Tela.TelaDeMenu;
+import Tela.TelaEditarCadastroDeProgramaSeriesRegulares;
+import Tela.TelaEditarProgramaContinuo;
+import Tela.TelaEditarProgramaDeRealityShows;
+import Tela.TelaListarTodosOsProgramas;
 import entity.Programa;
 import entity.ProgramaContinuo;
 import entity.ProgramaDeRealityShows;
 import entity.ProgramaSeriesRegulares;
-import enuns.TipoDePrograma;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemAgenda;
-import personalizedMessage.MensagemException;
-import personalizedMessage.MensagemPrograma;
-import tela.TelaDeMenu;
-import tela.TelaEditarCadastroDeProgramaSeriesRegulares;
-import tela.TelaEditarProgramaContinuo;
-import tela.TelaEditarProgramaDeRealityShows;
-import tela.TelaListarTodosOsProgramas;
 
 public class OuvinteTelaListarTodosOsProgramas implements ActionListener {
 

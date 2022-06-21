@@ -1,4 +1,4 @@
-package applicationAgenda;
+package ApplicationAgenda;
 
 import java.awt.HeadlessException;
 import java.text.ParseException;
@@ -8,11 +8,11 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import Enuns.StatusDeExebicao;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemAgenda;
 import entity.Programa;
-import enuns.StatusDeExebicao;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import personalizedMessage.MensagemAgenda;
 
 public class Hiato implements Runnable {
 
@@ -28,7 +28,7 @@ public class Hiato implements Runnable {
 		myCalendar.set(Calendar.SECOND, 0);
 		myCalendar.set(Calendar.MILLISECOND, 0);
 		return myCalendar.getTime();
-	}
+	} // end Date
 
 	@Override
 	public void run() {
@@ -63,7 +63,7 @@ public class Hiato implements Runnable {
 						e.printStackTrace();
 					} catch (ParseException e) {
 						e.printStackTrace();
-					}
+					} // end catch
 					
 				} else if (status[2] == entradaStatus) {
 					exebicao = StatusDeExebicao.FINALIZADO;
@@ -71,12 +71,12 @@ public class Hiato implements Runnable {
 					exebicao = StatusDeExebicao.CANCELADO;
 				} else {
 					exebicao = StatusDeExebicao.HIATO; 
-				}
+				} // end else
 				
 				p.setStatusDeExebicao(exebicao);
 				if(date != null) {
 					p.setDataHiato(date);
-				}
+				} // end if
 				persistencia.salvarCentral(centralDeInformacoes);
 			} // end if
 		} // end for	

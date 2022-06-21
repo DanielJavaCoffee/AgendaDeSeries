@@ -1,19 +1,19 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Enuns.TipoDeCanal;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import Model.ValidacaoDeCadastroDeCanal;
+import PersonalizedMessage.MensagemCanal;
+import PersonalizedMessage.MensagemException;
+import Tela.TelaDeCadastroDeCanal;
+import Tela.TelaDeMenu;
 import entity.Canal;
-import enuns.TipoDeCanal;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import model.ValidacaoDeCadastroDeCanal;
-import personalizedMessage.MensagemCanal;
-import personalizedMessage.MensagemException;
-import tela.TelaDeCadastroDeCanal;
-import tela.TelaDeMenu;
 
 public class OuvinteTelaDeCadastroDeCanal implements ActionListener {
 

@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.BorderLayout;
 
@@ -10,9 +10,9 @@ import javax.swing.event.ListSelectionListener;
 
 import com.itextpdf.text.List;
 
-import janelas.Janela;
-import model.CentralDeInformacoes;
-import model.Persistencia;
+import Janelas.Janela;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
 public class TelaDeImagem extends Janela {
 
 	Persistencia persistencia = new Persistencia();

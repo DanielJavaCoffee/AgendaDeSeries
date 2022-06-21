@@ -1,13 +1,13 @@
-package ouvinte;
+package Ouvinte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.CentralDeInformacoes;
-import model.Mensageiro;
-import model.Persistencia;
-import personalizedMessage.MensagemEmail;
-import tela.TelaDeMenu;
-import tela.TelaEnviarEmail;
+import Model.CentralDeInformacoes;
+import Model.Mensageiro;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemEmail;
+import Tela.TelaDeMenu;
+import Tela.TelaEnviarEmail;
 
 public class OuvinteTelaDeEnviarEmail implements ActionListener {
 

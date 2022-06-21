@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaGerarPDF;
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaGerarPDF;
 
 public class TelaGerarPDF extends JanelaPadrao {
 

@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -14,11 +14,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Janelas.JanelaPadrao;
+import Model.CentralDeInformacoes;
+import Model.Persistencia;
+import Ouvinte.OuvinteTelaDeListarCanal;
 import entity.Canal;
-import janelas.JanelaPadrao;
-import model.CentralDeInformacoes;
-import model.Persistencia;
-import ouvinte.OuvinteTelaDeListarCanal;
 
 public class TelaListarTodosOsCanal extends JanelaPadrao {
 

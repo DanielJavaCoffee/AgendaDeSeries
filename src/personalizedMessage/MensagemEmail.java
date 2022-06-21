@@ -1,4 +1,4 @@
-package personalizedMessage;
+package PersonalizedMessage;
 
 import javax.swing.JOptionPane;
 

@@ -1,14 +1,14 @@
-package ouvinte;
+package Ouvinte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.CentralDeInformacoes;
-import model.GeradorDeRelatorio;
-import model.Persistencia;
-import personalizedMessage.MensagemPDF;
-import tela.TelaDeMenu;
-import tela.TelaGerarPDF;
+import Model.CentralDeInformacoes;
+import Model.GeradorDeRelatorio;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemPDF;
+import Tela.TelaDeMenu;
+import Tela.TelaGerarPDF;
 
 public class OuvinteTelaGerarPDF implements ActionListener {
 

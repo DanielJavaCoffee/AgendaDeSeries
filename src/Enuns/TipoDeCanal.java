@@ -1,4 +1,4 @@
-package enuns;
+package Enuns;
 
 public enum TipoDeCanal {
 

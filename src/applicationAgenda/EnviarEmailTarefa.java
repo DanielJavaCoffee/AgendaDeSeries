@@ -1,14 +1,14 @@
-package applicationAgenda;
+package ApplicationAgenda;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
 
-import enuns.StatusDeExebicao;
-import model.CentralDeInformacoes;
-import model.Mensageiro;
-import model.Persistencia;
-import personalizedMessage.MensagemEmail;
+import Enuns.StatusDeExebicao;
+import Model.CentralDeInformacoes;
+import Model.Mensageiro;
+import Model.Persistencia;
+import PersonalizedMessage.MensagemEmail;
 
 public class EnviarEmailTarefa extends TimerTask {
 
@@ -25,15 +25,15 @@ public class EnviarEmailTarefa extends TimerTask {
 		StatusDeExebicao status = StatusDeExebicao.EXIBICAO;
 
 		for (int i = 0; i < centralDeInformacoes.getTodasAsAgendas().size(); i++) {
-			
+
 			if (status.equals(centralDeInformacoes.getTodasAsAgendas().get(i).getStatusDeExebicao().EXIBICAO)
 					&& hora.equals(centralDeInformacoes.getTodasAsAgendas().get(i).getHorario())) {
-				
 				Mensageiro.enviarProgramacaoDeHoje("Vai começar",
 						centralDeInformacoes.getTodosOsUsuarios().get(0).getEmail(),
 						"Prepare sua Pipoca" + "\n" + centralDeInformacoes.getTodasAsAgendas().get(i).toString());
 				MensagemEmail.emailEnviadoUsuario();
-			}
-		}
-	}
-}
+
+			} // end if
+		} // end for
+	} // end void run
+} // end class

@@ -1,4 +1,4 @@
-package tela;
+package Tela;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import janelas.JanelaPadrao;
-import ouvinte.OuvinteTelaDeEnviarEmail;
+import Janelas.JanelaPadrao;
+import Ouvinte.OuvinteTelaDeEnviarEmail;
 
 public class TelaEnviarEmail extends JanelaPadrao{
 
